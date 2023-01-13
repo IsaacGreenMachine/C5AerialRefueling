@@ -1,0 +1,11 @@
+Model Information:
+* title:	Outer Boom
+* source:	https://sketchfab.com/3d-models/outer-boom-a05432d997064e1386bbdddb06616c99
+* author:	lyndonpett (https://sketchfab.com/lyndonpett)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Outer Boom" (https://sketchfab.com/3d-models/outer-boom-a05432d997064e1386bbdddb06616c99) by lyndonpett (https://sketchfab.com/lyndonpett) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
