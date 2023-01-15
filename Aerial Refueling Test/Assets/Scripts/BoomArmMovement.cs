@@ -45,6 +45,14 @@ public class BoomArmMovement : Agent
     private InputAction extendAction;
     private InputAction retractAction;
     private InputAction clampButton;
+    private PlayerInput playerInput;
+
+    float spawnInFrontOfHole;
+
+    Vector3 startPos;
+    Quaternion startRot;
+    GameObject c5;
+
 
     // ACTION LAYOUT:
     // continuous:
@@ -59,6 +67,19 @@ public class BoomArmMovement : Agent
     {
         ArmAB = GetComponent<ArticulationBody>();
         nozzleCollider = nozzleAB.GetComponent<Collider>();
+        playerInput = GetComponent<PlayerInput>();
+        // reading inputs from input device
+        moveAction = playerInput.actions["Move"];
+        extendAction = playerInput.actions["Extend"];
+        retractAction = playerInput.actions["Retract"];
+
+        c5 = transform.parent.parent.GetChild(0).gameObject;
+
+        startPos = c5.transform.position;
+        startRot = c5.transform.rotation;
+
+        
+
     }
 
     // called every frame
@@ -82,6 +103,39 @@ public class BoomArmMovement : Agent
     // called at the beginning of each episode
     public override void OnEpisodeBegin()
     {
+        c5.transform.position = startPos;
+        c5.transform.rotation = startRot;
+
+        spawnInFrontOfHole = Random.value;
+
+        if (spawnInFrontOfHole > 0.5f)
+        {
+            ArticulationDrive driveZ;
+            driveZ = ArmAB.zDrive;
+            driveZ.target = 15f;
+            ArmAB.zDrive = driveZ;
+
+            ArticulationDrive driveY;
+            driveY = ArmAB.yDrive;
+            driveY.target = -1.4f;
+            ArmAB.yDrive = driveY;
+
+            ArticulationDrive hoseZ;
+            hoseZ = HoseAB.zDrive;
+            hoseZ.target = 2f;
+            HoseAB.zDrive = hoseZ;
+        } else
+        {
+            float rangeRotationX = Random.Range(-2.5f, 2.5f);
+            float rangeRotationY = Random.Range(-2.5f, 2.5f);
+            float rangeRotationZ = Random.Range(-5, 5);
+
+            float rangeDistanceZ = Random.Range(-3.5f, 0f);
+
+            c5.transform.rotation = Quaternion.Euler(rangeRotationX, rangeRotationY, rangeRotationZ);
+            c5.transform.position += new Vector3(0, 0, rangeDistanceZ);
+
+        }
     }
 
     // 
@@ -105,6 +159,7 @@ public class BoomArmMovement : Agent
         // straight distance between nozzle and fuel hole
         float straightDist = Vector3.Distance(nozzleCollider.transform.position, fuelHole.transform.position);
         sensor.AddObservation(straightDist);
+        AddReward(1 / ((straightDist / .004f) + .01f));
     }
 
     // converts user input to actions for the arm to take
@@ -116,27 +171,15 @@ public class BoomArmMovement : Agent
 
         if (joystickMode)
         {
-            // reading inputs from input device
             Vector2 moveInput = moveAction.ReadValue<Vector2>();
             float extendInput = extendAction.ReadValue<float>();
-            float clampInput = clampButton.ReadValue<float>();
 
-            // setting action values from input device)
-            continuousActionsOut[0] = moveInput.y;
-            continuousActionsOut[1] = moveInput.x;
+            float moveY = moveInput.y;
+            float moveX = moveInput.x;
 
 
-            ////// might need some work ///////////
-            if (extendInput > 0)
-                discreteActionsOut[0] = 2;
-            else if (extendInput < 0)
-                discreteActionsOut[0] = 0;
-            else
-                discreteActionsOut[0] = 1;
-            if (clampInput > 0)
-                discreteActionsOut[1] = 1;
-            else
-                discreteActionsOut[1] = 0;
+            continuousActionsOut[0] = -moveY;
+            continuousActionsOut[1] = moveX;
         }
 
         else if (keyboardMode)
@@ -256,10 +299,10 @@ public class BoomArmMovement : Agent
                 clamped = true;
                 AddReward(20);
             }
-        }
+        }  
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         // if colliding with C5
         if (collision.gameObject.layer == 6)

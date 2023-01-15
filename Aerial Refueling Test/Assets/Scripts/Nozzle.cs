@@ -19,9 +19,9 @@ public class Nozzle : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "hole")
-            bam.AddReward(0.5f);
+            bam.AddReward(1f);
         else if (other.gameObject.tag == "funnel")
-            bam.AddReward(0.05f);
+        { }
         else
             bam.AddReward(-0.1f);
     }
