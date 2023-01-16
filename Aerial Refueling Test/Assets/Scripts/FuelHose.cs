@@ -14,7 +14,7 @@ public class FuelHose : MonoBehaviour
     {
         // if colliding with C5
         if (collision.gameObject.layer == 6)
-            bam.AddReward(-0.1f);
+            bam.AddReward(-1f);
     }
 
 

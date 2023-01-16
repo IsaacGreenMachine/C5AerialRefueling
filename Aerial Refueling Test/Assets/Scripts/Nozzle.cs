@@ -9,20 +9,14 @@ public class Nozzle : MonoBehaviour
     {
         bam = transform.parent.parent.GetComponent<BoomArmMovement>();
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        // if (collision.gameObject.tag == "funnel")
-            Debug.Log(collision);
-        // bam.AddReward();
-    }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "hole")
-            bam.AddReward(1f);
+            bam.AddReward(5f);
         else if (other.gameObject.tag == "funnel")
         { }
         else
-            bam.AddReward(-0.1f);
+            bam.AddReward(-1f);
     }
 }

@@ -1,0 +1,38 @@
+{
+    "RefuelArm": {
+        "checkpoints": [
+            {
+                "steps": 499968,
+                "file_path": "results/angle_run_01/RefuelArm/RefuelArm-499968.onnx",
+                "reward": 1.4037960804998875,
+                "creation_time": 1673891968.884394,
+                "auxillary_file_paths": [
+                    "results/angle_run_01/RefuelArm/RefuelArm-499968.pt"
+                ]
+            },
+            {
+                "steps": 701440,
+                "file_path": "results/angle_run_01/RefuelArm/RefuelArm-701440.onnx",
+                "reward": 1.3536458513699472,
+                "creation_time": 1673892867.537484,
+                "auxillary_file_paths": [
+                    "results/angle_run_01/RefuelArm/RefuelArm-701440.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 701440,
+            "file_path": "results/angle_run_01/RefuelArm.onnx",
+            "reward": 1.3536458513699472,
+            "creation_time": 1673892867.537484,
+            "auxillary_file_paths": [
+                "results/angle_run_01/RefuelArm/RefuelArm-701440.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.11.0"
+    }
+}

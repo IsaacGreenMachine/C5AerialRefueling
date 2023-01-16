@@ -13,6 +13,7 @@ public class BoomArmMovement : Agent
     public ArticulationBody nozzleAB;
     public Collider nozzleCollider;
     public Transform fuelHole;
+    public GameObject rotPoint;
 
     // ROLL params
     public float rollSpeed;
@@ -66,7 +67,12 @@ public class BoomArmMovement : Agent
     void Start()
     {
         ArmAB = GetComponent<ArticulationBody>();
+        HoseAB = transform.GetChild(1).GetComponent<ArticulationBody>();
+        nozzleAB = transform.GetChild(1).GetChild(1).GetComponent<ArticulationBody>();
         nozzleCollider = nozzleAB.GetComponent<Collider>();
+        fuelHole = transform.parent.parent.GetChild(0).GetChild(2).transform;
+        rotPoint = transform.parent.GetChild(4).gameObject;
+
         playerInput = GetComponent<PlayerInput>();
         // reading inputs from input device
         moveAction = playerInput.actions["Move"];
@@ -77,15 +83,13 @@ public class BoomArmMovement : Agent
 
         startPos = c5.transform.position;
         startRot = c5.transform.rotation;
-
-        
-
     }
 
     // called every frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.O))
+            EndEpisode();
     }
 
     // returns true or false if the nozzle is within the fuel hole
@@ -93,9 +97,11 @@ public class BoomArmMovement : Agent
     {
         foreach (Collider c in Physics.OverlapSphere(nozzleAB.transform.position, 0.07f))
         {
-            Debug.Log(c.tag);
             if (c.tag == "hole")
+            {
+                Debug.Log(c.tag);
                 return true;
+            }
         }
         return false;
     }
@@ -108,34 +114,37 @@ public class BoomArmMovement : Agent
 
         spawnInFrontOfHole = Random.value;
 
-        if (spawnInFrontOfHole > 0.5f)
+        ArticulationDrive driveZ;
+        driveZ = ArmAB.zDrive;
+        ArticulationDrive driveY;
+        driveY = ArmAB.yDrive;
+        ArticulationDrive hoseZ;
+        hoseZ = HoseAB.zDrive;
+
+        if (spawnInFrontOfHole > 0.90f)
+        // if (spawnInFrontOfHole > 2)
         {
-            ArticulationDrive driveZ;
-            driveZ = ArmAB.zDrive;
             driveZ.target = 15f;
-            ArmAB.zDrive = driveZ;
-
-            ArticulationDrive driveY;
-            driveY = ArmAB.yDrive;
             driveY.target = -1.4f;
-            ArmAB.yDrive = driveY;
-
-            ArticulationDrive hoseZ;
-            hoseZ = HoseAB.zDrive;
             hoseZ.target = 2f;
-            HoseAB.zDrive = hoseZ;
         } else
         {
+            driveZ.target = 0f;
+            driveY.target = 0f;
+            hoseZ.target = 0f;
+
             float rangeRotationX = Random.Range(-2.5f, 2.5f);
             float rangeRotationY = Random.Range(-2.5f, 2.5f);
             float rangeRotationZ = Random.Range(-5, 5);
-
             float rangeDistanceZ = Random.Range(-3.5f, 0f);
 
             c5.transform.rotation = Quaternion.Euler(rangeRotationX, rangeRotationY, rangeRotationZ);
             c5.transform.position += new Vector3(0, 0, rangeDistanceZ);
-
         }
+
+        ArmAB.zDrive = driveZ;
+        ArmAB.yDrive = driveY;
+        HoseAB.zDrive = hoseZ;
     }
 
     // 
@@ -151,15 +160,31 @@ public class BoomArmMovement : Agent
         // Debug.Log(Vector3.Dot(nozzleCollider.transform.forward, fuelHole.transform.forward));
 
         // X, Y, Z differences between nozzle and fuel hole
-        Vector3 xyzDiff = (nozzleCollider.transform.position - fuelHole.transform.position);
-        sensor.AddObservation(xyzDiff.x);
-        sensor.AddObservation(xyzDiff.y);
-        sensor.AddObservation(xyzDiff.z);
+        // Vector3 xyzDiff = (nozzleCollider.transform.position - fuelHole.transform.position);
+        // sensor.AddObservation(xyzDiff.x);
+        // sensor.AddObservation(xyzDiff.y);
+        // sensor.AddObservation(xyzDiff.z);
 
         // straight distance between nozzle and fuel hole
         float straightDist = Vector3.Distance(nozzleCollider.transform.position, fuelHole.transform.position);
         sensor.AddObservation(straightDist);
-        AddReward(1 / ((straightDist / .004f) + .01f));
+        AddReward(-straightDist);
+
+        // Debug.Log(xyzDiff.x  + "|" + xyzDiff.y + "|" + xyzDiff.z + "|" + straightDist + " || " + GetCumulativeReward());
+
+        Vector3 idealAngle = fuelHole.position - rotPoint.transform.position;
+        Vector3 currentAngle = fuelHole.position - nozzleCollider.transform.position;
+        float zdiff = Vector3.SignedAngle(new Vector3(idealAngle.x, idealAngle.y, 0), new Vector3(currentAngle.x, currentAngle.y, 0), transform.forward);
+        // float ydiff = Vector3.Angle(new Vector3(idealAngle.x, 0, idealAngle.z), new Vector3(currentAngle.x, 0, currentAngle.z));
+        float xdiff = Vector3.SignedAngle(new Vector3(0, idealAngle.y, idealAngle.z), new Vector3(0, currentAngle.y, currentAngle.z), transform.right);
+        sensor.AddObservation(xdiff);
+        // sensor.AddObservation(ydiff);
+        sensor.AddObservation(zdiff);
+        // Debug.Log( zdiff + "|" + xdiff + "|" + straightDist);
+        // Debug.Log(GetCumulativeReward());
+        // Debug.DrawLine(fuelHole.position, nozzleCollider.transform.position, Color.green);
+        // Debug.DrawLine(fuelHole.position, rotPoint.transform.position, Color.blue);
+
     }
 
     // converts user input to actions for the arm to take
@@ -289,6 +314,7 @@ public class BoomArmMovement : Agent
                 clamped = false;
                 // set nozzle to not collide (trigger)
                 nozzleCollider.isTrigger = true;
+                AddReward(-2000);
             }
             // if arm is not clamped, but is in proper clamping position
             else if (withinClamp())
@@ -297,7 +323,7 @@ public class BoomArmMovement : Agent
                 nozzleCollider.isTrigger = false;
                 // set clamped status
                 clamped = true;
-                AddReward(20);
+                AddReward(2000);
             }
         }  
     }
@@ -306,6 +332,6 @@ public class BoomArmMovement : Agent
     {
         // if colliding with C5
         if (collision.gameObject.layer == 6)
-            AddReward(-0.1f);
+            AddReward(-1f);
     }
 }
