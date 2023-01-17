@@ -112,6 +112,8 @@ public class PlaneMovement : MonoBehaviour
     [Range(0f, 150f)]
     public float minMaxRotationZ = 120;
 
+    public SceneSetup sceneSetup;
+
 
     void Start()
     {
@@ -119,6 +121,8 @@ public class PlaneMovement : MonoBehaviour
         C5go = GameObject.Find("c5");
         KC135go = GameObject.Find("KC135");
         // SpawnPlane();
+
+
 
     }
 

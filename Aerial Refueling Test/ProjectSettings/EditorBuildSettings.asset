@@ -4,5 +4,23 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: d8d29e184b0a1de4f98b12b357870af1
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 15df0601779941845b01a3c614804f33
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Joystick.unity
+    guid: 7797f887487b7394db1dc6f8a7afaf12
+  - enabled: 1
+    path: Assets/Scenes/Keyboard.unity
+    guid: 952012c615133ef40aac8b6f8f278cae
+  - enabled: 1
+    path: Assets/Scenes/Controller.unity
+    guid: f60c19edfdfaf5f46b214d87d54f4fa4
   m_configObjects: {}
