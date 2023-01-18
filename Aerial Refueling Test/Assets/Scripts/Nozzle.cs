@@ -13,10 +13,17 @@ public class Nozzle : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "hole")
-            bam.AddReward(5f);
+        {
+            if (!bam.clamped && bam.fuelAmt < 100)
+                bam.AddReward(0.0001f);
+            else if (bam.clamped && bam.fuelAmt < 100)
+                bam.AddReward(0.0005f);
+            else if (bam.fuelAmt >= 100)
+                bam.AddReward(-0.0001f);
+        }
         else if (other.gameObject.tag == "funnel")
         { }
         else
-            bam.AddReward(-1f);
+            bam.AddReward(-0.000005f);
     }
 }

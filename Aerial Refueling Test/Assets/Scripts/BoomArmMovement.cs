@@ -50,10 +50,10 @@ public class BoomArmMovement : Agent
 
     float spawnInFrontOfHole;
 
-    Vector3 startPos;
-    Quaternion startRot;
-    GameObject c5;
+    [Range(0f, 100f)]
+    public float fuelAmt;
 
+    public float fuelRate;
 
     // ACTION LAYOUT:
     // continuous:
@@ -62,6 +62,8 @@ public class BoomArmMovement : Agent
     // discrete:
     //  [0] arm extend (0: retract, 1: remain still, 2: extend)
     //  [1] clamp (0:nothing, 1: activate/deactivate clamp)
+
+    public PlaneMovement c5movscpt;
 
     // called when game is started
     void Start()
@@ -79,10 +81,8 @@ public class BoomArmMovement : Agent
         extendAction = playerInput.actions["Extend"];
         retractAction = playerInput.actions["Retract"];
 
-        c5 = transform.parent.parent.GetChild(0).gameObject;
-
-        startPos = c5.transform.position;
-        startRot = c5.transform.rotation;
+        c5movscpt = transform.parent.parent.GetChild(0).GetComponent<PlaneMovement>();
+        c5movscpt.Start();
     }
 
     // called every frame
@@ -90,6 +90,12 @@ public class BoomArmMovement : Agent
     {
         if (Input.GetKeyDown(KeyCode.O))
             EndEpisode();
+        if (clamped && fuelAmt < 100)
+        {
+            fuelAmt = Mathf.Min(fuelAmt + (fuelRate * 0.01f), 100);
+        }
+        // Debug.Log(GetCumulativeReward());
+        // Debug.Log(nozzleCollider.transform.position);
     }
 
     // returns true or false if the nozzle is within the fuel hole
@@ -109,10 +115,6 @@ public class BoomArmMovement : Agent
     // called at the beginning of each episode
     public override void OnEpisodeBegin()
     {
-        c5.transform.position = startPos;
-        c5.transform.rotation = startRot;
-
-        spawnInFrontOfHole = Random.value;
 
         ArticulationDrive driveZ;
         driveZ = ArmAB.zDrive;
@@ -121,25 +123,32 @@ public class BoomArmMovement : Agent
         ArticulationDrive hoseZ;
         hoseZ = HoseAB.zDrive;
 
+        spawnInFrontOfHole = Random.value;
+
         if (spawnInFrontOfHole > 0.90f)
-        // if (spawnInFrontOfHole > 2)
         {
-            driveZ.target = 15f;
-            driveY.target = -1.4f;
             hoseZ.target = 2f;
-        } else
+            var tempp = extendSpeed;
+            extendSpeed = 5;
+            StartCoroutine(waiter());
+            c5movscpt.SpawnPlane(false);
+            driveZ.target = 12.5f;
+            driveY.target = -1.1f;
+            hoseZ.target = 3.42f;
+            extendSpeed = tempp;
+
+        }
+        else
         {
+            hoseZ.target = 0f;
+            var tempp = extendSpeed;
+            extendSpeed = 5;
+            StartCoroutine(waiter());
+            extendSpeed = tempp;
             driveZ.target = 0f;
             driveY.target = 0f;
-            hoseZ.target = 0f;
+            c5movscpt.SpawnPlane(true);
 
-            float rangeRotationX = Random.Range(-2.5f, 2.5f);
-            float rangeRotationY = Random.Range(-2.5f, 2.5f);
-            float rangeRotationZ = Random.Range(-5, 5);
-            float rangeDistanceZ = Random.Range(-3.5f, 0f);
-
-            c5.transform.rotation = Quaternion.Euler(rangeRotationX, rangeRotationY, rangeRotationZ);
-            c5.transform.position += new Vector3(0, 0, rangeDistanceZ);
         }
 
         ArmAB.zDrive = driveZ;
@@ -168,7 +177,13 @@ public class BoomArmMovement : Agent
         // straight distance between nozzle and fuel hole
         float straightDist = Vector3.Distance(nozzleCollider.transform.position, fuelHole.transform.position);
         sensor.AddObservation(straightDist);
-        AddReward(-straightDist);
+
+        // add reward for being close when needing to fuel, and being far away when done fueling
+        // 0.0001 -> 0.000001 ish per frame
+        if (fuelAmt < 100)
+            AddReward(-straightDist / 80000);
+        else
+            AddReward(-straightDist / 80000);
 
         // Debug.Log(xyzDiff.x  + "|" + xyzDiff.y + "|" + xyzDiff.z + "|" + straightDist + " || " + GetCumulativeReward());
 
@@ -185,6 +200,7 @@ public class BoomArmMovement : Agent
         // Debug.DrawLine(fuelHole.position, nozzleCollider.transform.position, Color.green);
         // Debug.DrawLine(fuelHole.position, rotPoint.transform.position, Color.blue);
 
+        // Debug.Log(xdiff + " " + zdiff + " " + straightDist + " " + fuelAmt);
     }
 
     // converts user input to actions for the arm to take
@@ -314,7 +330,10 @@ public class BoomArmMovement : Agent
                 clamped = false;
                 // set nozzle to not collide (trigger)
                 nozzleCollider.isTrigger = true;
-                AddReward(-2000);
+                if (fuelAmt < 100)
+                    AddReward(-0.3f);
+                else
+                    AddReward(0.3f);
             }
             // if arm is not clamped, but is in proper clamping position
             else if (withinClamp())
@@ -323,7 +342,7 @@ public class BoomArmMovement : Agent
                 nozzleCollider.isTrigger = false;
                 // set clamped status
                 clamped = true;
-                AddReward(2000);
+                AddReward(0.3f);
             }
         }  
     }
@@ -332,6 +351,12 @@ public class BoomArmMovement : Agent
     {
         // if colliding with C5
         if (collision.gameObject.layer == 6)
-            AddReward(-1f);
+            AddReward(-0.00005f);
+    }
+
+    IEnumerator waiter()
+    {
+        //Wait for 2 seconds
+        yield return new WaitForSecondsRealtime(5);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlaneMovementArticulationBody : MonoBehaviour
 {
+    public bool targetMode;
 
     /// <summary>
     /// determines how fast the plane will roll
@@ -92,6 +93,10 @@ public class PlaneMovementArticulationBody : MonoBehaviour
     public KeyCode throttleUp;
     public KeyCode throttleDown;
 
+    public Vector3 targetPos;
+    public float rollMax;
+    public float pitchMax;
+
     void Start()
     {
         plane = GetComponent<ArticulationBody>();
@@ -101,7 +106,69 @@ public class PlaneMovementArticulationBody : MonoBehaviour
     {
         // creating blank torque force
         Vector3 torq = new(0, 0, 0);
+        if (targetMode)
+        {
+            // Debug.Log(transform.rotation.eulerAngles);
+            Vector3 deltaPos = targetPos - transform.localPosition;
+            Vector3 adjustedRot = transform.localEulerAngles;
+            if (adjustedRot.x > 180)
+                adjustedRot.x -= 360;
+            if (adjustedRot.y > 180)
+                adjustedRot.y -= 360;
+            if (adjustedRot.z > 180)
+                adjustedRot.z -= 360;
 
+            // autoflight for roll
+            float xdiff = Vector3.Dot(deltaPos, new Vector3(transform.right.x, 0, transform.right.z));
+            if (Mathf.Abs(xdiff) > 2)
+            {
+                // left
+                if (xdiff < 0 && adjustedRot.z < rollMax)
+                    torq += 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+                // right
+                else if (xdiff > 0 && adjustedRot.z > -rollMax)
+                    torq -= 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            }
+
+            // autoflight for pitch
+            float ydiff = deltaPos.y;
+            if (Mathf.Abs(ydiff) > 2)
+            {
+                // down
+                if (ydiff < 0 && adjustedRot.x < pitchMax - AngOfAttack)
+                    torq += 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+                // up
+                else if (ydiff > 0 && adjustedRot.x > -pitchMax - AngOfAttack)
+                    torq -= 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(-AngOfAttack, transform.eulerAngles.y, transform.eulerAngles.z);
+            }
+
+            // autoflight for throttle
+            float zdiff = Vector3.Dot(deltaPos, new Vector3(transform.forward.x, 0, transform.forward.z));
+            if (Mathf.Abs(zdiff) > 5)
+            {
+                if (zdiff > 0)
+                    throttle = Mathf.Clamp(throttle + (throttleChange * Time.deltaTime), -1, 1);
+
+                else if (zdiff < 0)
+                    throttle = Mathf.Clamp(throttle - (throttleChange * Time.deltaTime), -1, 1);
+            }
+            else
+            {
+                throttle = 0;
+            }
+            Debug.Log(zdiff);            
+        }
+
+        else
+        {       
         // adding roll to torque vector
         if (Input.GetKey(left))
             torq += 0.01f * rollSpeed * Time.deltaTime * transform.forward;
@@ -125,7 +192,7 @@ public class PlaneMovementArticulationBody : MonoBehaviour
             throttle = Mathf.Clamp(throttle + (throttleChange * Time.deltaTime), -1, 1);
         if (Input.GetKey(throttleDown))
             throttle = Mathf.Clamp(throttle - (throttleChange * Time.deltaTime), -1, 1);
-
+        }
 
         // getting angle of the plane
         Vector3 ang = transform.rotation.eulerAngles;
@@ -147,7 +214,7 @@ public class PlaneMovementArticulationBody : MonoBehaviour
         // set velocity of plane based on change in up/down/left/right calculated above
         plane.velocity = (new Vector3(transform.forward.x, 0, transform.forward.z) * throttle) + new Vector3(0, deltaHeight, 0) + (new Vector3(-transform.right.x, 0, -transform.right.z) * deltaLR);
         // set angular velocity of plane based on torque
-        plane.angularVelocity = torq;
+        plane.angularVelocity = torq;        
     }
 
     // fun script to make flaps move on C5

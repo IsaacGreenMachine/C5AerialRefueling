@@ -112,56 +112,117 @@ public class PlaneMovement : MonoBehaviour
     [Range(0f, 150f)]
     public float minMaxRotationZ = 120;
 
-    public SceneSetup sceneSetup;
+    public bool targetMode;
+    public Vector3 targetPos;
+    public float rollMax;
+    public float pitchMax;
+
+    Vector3 startPos;
+    Quaternion startRot;
 
 
-    void Start()
+
+    public void Start()
     {
         plane = GetComponent<Rigidbody>();
-        C5go = GameObject.Find("c5");
-        KC135go = GameObject.Find("KC135");
-        // SpawnPlane();
-
-
-
+        startPos = transform.localPosition;
+        // Debug.Log(startPos);
+        startRot = transform.rotation;
     }
 
     void Update()
     {
-        ResetPlane();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-        
-        }
+        // ResetPlane();
 
         // creating blank torque force
         Vector3 torq = new(0, 0, 0);
+        if (targetMode)
+        {
+            // Debug.Log(transform.rotation.eulerAngles);
+            Vector3 deltaPos = targetPos - transform.localPosition;
+            Vector3 adjustedRot = transform.localEulerAngles;
+            if (adjustedRot.x > 180)
+                adjustedRot.x -= 360;
+            if (adjustedRot.y > 180)
+                adjustedRot.y -= 360;
+            if (adjustedRot.z > 180)
+                adjustedRot.z -= 360;
 
-        // adding roll to torque vector
-        if (Input.GetKey(left))
-            torq += 0.01f * rollSpeed * Time.deltaTime * transform.forward;
-        if (Input.GetKey(right))
-            torq -= 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+            // autoflight for roll
+            float xdiff = Vector3.Dot(deltaPos, new Vector3(transform.right.x, 0, transform.right.z));
+            if (Mathf.Abs(xdiff) > 2)
+            {
+                // left
+                if (xdiff < 0 && adjustedRot.z < rollMax)
+                    torq += 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+                // right
+                else if (xdiff > 0 && adjustedRot.z > -rollMax)
+                    torq -= 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            }
 
-        // adding pitch to torque vector
-        if (Input.GetKey(forward))
-            torq += 0.01f * pitchSpeed * Time.deltaTime * transform.right;
-        if (Input.GetKey(backward))
-            torq -= 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+            // autoflight for pitch
+            float ydiff = deltaPos.y;
+            if (Mathf.Abs(ydiff) > 2)
+            {
+                // down
+                if (ydiff < 0 && adjustedRot.x < pitchMax - AngOfAttack)
+                    torq += 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+                // up
+                else if (ydiff > 0 && adjustedRot.x > -pitchMax - AngOfAttack)
+                    torq -= 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(-AngOfAttack, transform.eulerAngles.y, transform.eulerAngles.z);
+            }
 
-        // adding yaw to torque vector
-        if (Input.GetKey(yawL))
-            torq -= 0.01f * Time.deltaTime * yawSpeed * transform.up;
-        if (Input.GetKey(yawR))
-            torq += 0.01f * Time.deltaTime * yawSpeed * transform.up;
+            // autoflight for throttle
+            float zdiff = Vector3.Dot(deltaPos, new Vector3(transform.forward.x, 0, transform.forward.z));
+            if (Mathf.Abs(zdiff) > 5)
+            {
+                if (zdiff > 0)
+                    throttle = Mathf.Clamp(throttle + (throttleChange * Time.deltaTime), -1, 1);
 
-        // setting throttle amount
-        if (Input.GetKey(throttleUp))
-            throttle = Mathf.Clamp(throttle + (throttleChange * Time.deltaTime), -1, 1);
-        if (Input.GetKey(throttleDown))
-            throttle = Mathf.Clamp(throttle - (throttleChange * Time.deltaTime), -1, 1);
+                else if (zdiff < 0)
+                    throttle = Mathf.Clamp(throttle - (throttleChange * Time.deltaTime), -1, 1);
+            }
+            else
+            {
+                throttle = 0;
+            }
+            // Debug.Log(zdiff);
+        }
 
+        else
+        {
+            // adding roll to torque vector
+            if (Input.GetKey(left))
+                torq += 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+            if (Input.GetKey(right))
+                torq -= 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+
+            // adding pitch to torque vector
+            if (Input.GetKey(forward))
+                torq += 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+            if (Input.GetKey(backward))
+                torq -= 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+
+            // adding yaw to torque vector
+            if (Input.GetKey(yawL))
+                torq -= 0.01f * Time.deltaTime * yawSpeed * transform.up;
+            if (Input.GetKey(yawR))
+                torq += 0.01f * Time.deltaTime * yawSpeed * transform.up;
+
+            // setting throttle amount
+            if (Input.GetKey(throttleUp))
+                throttle = Mathf.Clamp(throttle + (throttleChange * Time.deltaTime), -1, 1);
+            if (Input.GetKey(throttleDown))
+                throttle = Mathf.Clamp(throttle - (throttleChange * Time.deltaTime), -1, 1);
+        }
 
         // getting angle of the plane
         Vector3 ang = transform.rotation.eulerAngles;
@@ -248,19 +309,23 @@ public class PlaneMovement : MonoBehaviour
         }
     }
 
-    void SpawnPlane()
+    public void SpawnPlane(bool randPos)
     {
-        float rangeX = Random.Range(-minMaxDistanceX + 10, minMaxDistanceX - 10);
-        float rangeY = Random.Range(-minMaxDistanceY + 10, minMaxDistanceY - 10);
-        float rangeZ = Random.Range(-minMaxDistanceZ + 20, 20);
+        transform.localPosition = startPos;
+        transform.rotation = startRot;
 
-        C5go.transform.position += new Vector3(rangeX, rangeY, rangeZ);
+        if (randPos)
+        {
+            float rangeRotationX = Random.Range(-2.5f, 2.5f);
+            float rangeRotationY = Random.Range(-2.5f, 2.5f);
+            float rangeRotationZ = Random.Range(-5, 5);
+            float rangeDistanceZ = Random.Range(-1.25f, 1.25f);
+            float rangeDistanceX = Random.Range(-0.75f, 0.75f);
+            float rangeDistanceY = Random.Range(-0.2f, 0.2f);
 
-        float rangeRotationX = Random.Range(-minMaxRotationX, minMaxRotationX);
-        float rangeRotationY = Random.Range(-minMaxRotationY, minMaxRotationY);
-        float rangeRotationZ = Random.Range(-minMaxRotationZ, minMaxRotationZ);
-
-        C5go.transform.rotation = Quaternion.Euler(rangeRotationX, rangeRotationY, rangeRotationZ);
+            transform.rotation = Quaternion.Euler(rangeRotationX, rangeRotationY, rangeRotationZ);
+            transform.position += new Vector3(rangeDistanceX, rangeDistanceY, rangeDistanceZ);
+        }
 
     }
 }

@@ -1,0 +1,65 @@
+{
+    "RefuelArm": {
+        "checkpoints": [
+            {
+                "steps": 499952,
+                "file_path": "results/angle_run_6/RefuelArm/RefuelArm-499952.onnx",
+                "reward": null,
+                "creation_time": 1674068419.046113,
+                "auxillary_file_paths": [
+                    "results/angle_run_6/RefuelArm/RefuelArm-499952.pt"
+                ]
+            },
+            {
+                "steps": 999920,
+                "file_path": "results/angle_run_6/RefuelArm/RefuelArm-999920.onnx",
+                "reward": null,
+                "creation_time": 1674069017.286942,
+                "auxillary_file_paths": [
+                    "results/angle_run_6/RefuelArm/RefuelArm-999920.pt"
+                ]
+            },
+            {
+                "steps": 1499888,
+                "file_path": "results/angle_run_6/RefuelArm/RefuelArm-1499888.onnx",
+                "reward": null,
+                "creation_time": 1674069631.945761,
+                "auxillary_file_paths": [
+                    "results/angle_run_6/RefuelArm/RefuelArm-1499888.pt"
+                ]
+            },
+            {
+                "steps": 1999984,
+                "file_path": "results/angle_run_6/RefuelArm/RefuelArm-1999984.onnx",
+                "reward": null,
+                "creation_time": 1674070251.846548,
+                "auxillary_file_paths": [
+                    "results/angle_run_6/RefuelArm/RefuelArm-1999984.pt"
+                ]
+            },
+            {
+                "steps": 2492400,
+                "file_path": "results/angle_run_6/RefuelArm/RefuelArm-2492400.onnx",
+                "reward": null,
+                "creation_time": 1674070874.094186,
+                "auxillary_file_paths": [
+                    "results/angle_run_6/RefuelArm/RefuelArm-2492400.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2492400,
+            "file_path": "results/angle_run_6/RefuelArm.onnx",
+            "reward": null,
+            "creation_time": 1674070874.094186,
+            "auxillary_file_paths": [
+                "results/angle_run_6/RefuelArm/RefuelArm-2492400.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.11.0"
+    }
+}
