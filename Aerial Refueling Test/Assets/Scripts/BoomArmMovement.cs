@@ -65,6 +65,18 @@ public class BoomArmMovement : Agent
 
     public PlaneMovement c5movscpt;
 
+    Vector3 armStartPos;
+    Vector3 armStartRot;
+    Vector3 hoseStartPos;
+
+    public float episodeRewardNum;
+
+    public float xRotDist;
+    public float zRotDist;
+    public float nozzDist;
+
+    public Collider clampCollider;
+
     // called when game is started
     void Start()
     {
@@ -83,6 +95,12 @@ public class BoomArmMovement : Agent
 
         c5movscpt = transform.parent.parent.GetChild(0).GetComponent<PlaneMovement>();
         c5movscpt.Start();
+
+        armStartPos = transform.position;
+        armStartRot = transform.rotation.eulerAngles;
+        hoseStartPos = HoseAB.transform.position;
+
+        clampCollider = transform.parent.parent.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<Collider>();
     }
 
     // called every frame
@@ -94,7 +112,7 @@ public class BoomArmMovement : Agent
         {
             fuelAmt = Mathf.Min(fuelAmt + (fuelRate * 0.01f), 100);
         }
-        // Debug.Log(GetCumulativeReward());
+        episodeRewardNum = GetCumulativeReward();
         // Debug.Log(nozzleCollider.transform.position);
     }
 
@@ -115,6 +133,12 @@ public class BoomArmMovement : Agent
     // called at the beginning of each episode
     public override void OnEpisodeBegin()
     {
+        fuelAmt = 0;
+
+        //List<float> jointPositionBackup = new List<float> { 0, 0, 0, 0, 0, 0, -0.01849806f, 0.2184863f, 0, 3.388485f };
+        //ArmAB.GetJointPositions(jointPositionBackup);
+        //foreach (float f in jointPositionBackup)
+        //    Debug.Log(f);
 
         ArticulationDrive driveZ;
         driveZ = ArmAB.zDrive;
@@ -124,29 +148,28 @@ public class BoomArmMovement : Agent
         hoseZ = HoseAB.zDrive;
 
         spawnInFrontOfHole = Random.value;
-
-        if (spawnInFrontOfHole > 0.90f)
+        // spawn in hole
+        if (spawnInFrontOfHole > 0.60f)
         {
-            hoseZ.target = 2f;
-            var tempp = extendSpeed;
-            extendSpeed = 5;
-            StartCoroutine(waiter());
+            List<float> jointPositionBackup = new List<float> {0, 0, 0, 0, 0, 0, -0.01972235f, 0.2663373f, 0, 2.478287f};
+            ArmAB.SetJointPositions(jointPositionBackup);
             c5movscpt.SpawnPlane(false);
-            driveZ.target = 12.5f;
-            driveY.target = -1.1f;
-            hoseZ.target = 3.42f;
-            extendSpeed = tempp;
-
+            driveZ.target = 15.26f;
+            driveY.target = -1.13f;
+            hoseZ.target = 2.48f;
+            if (spawnInFrontOfHole > 0.80f)
+                Clamp();
         }
+
+        // spawn random
         else
         {
+            List<float> jointPositionBackup = new List<float> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            ArmAB.SetJointPositions(jointPositionBackup);
             hoseZ.target = 0f;
-            var tempp = extendSpeed;
-            extendSpeed = 5;
-            StartCoroutine(waiter());
-            extendSpeed = tempp;
             driveZ.target = 0f;
             driveY.target = 0f;
+
             c5movscpt.SpawnPlane(true);
 
         }
@@ -177,30 +200,38 @@ public class BoomArmMovement : Agent
         // straight distance between nozzle and fuel hole
         float straightDist = Vector3.Distance(nozzleCollider.transform.position, fuelHole.transform.position);
         sensor.AddObservation(straightDist);
-
+        nozzDist = straightDist;
         // add reward for being close when needing to fuel, and being far away when done fueling
         // 0.0001 -> 0.000001 ish per frame
         if (fuelAmt < 100)
-            AddReward(-straightDist / 80000);
+            AddReward((-straightDist / 80000) + .0000025f);
         else
-            AddReward(-straightDist / 80000);
+            AddReward(straightDist / 80000);
 
+        // Debug.Log((-straightDist / 80000) + .0000025f);
         // Debug.Log(xyzDiff.x  + "|" + xyzDiff.y + "|" + xyzDiff.z + "|" + straightDist + " || " + GetCumulativeReward());
 
         Vector3 idealAngle = fuelHole.position - rotPoint.transform.position;
-        Vector3 currentAngle = fuelHole.position - nozzleCollider.transform.position;
-        float zdiff = Vector3.SignedAngle(new Vector3(idealAngle.x, idealAngle.y, 0), new Vector3(currentAngle.x, currentAngle.y, 0), transform.forward);
-        // float ydiff = Vector3.Angle(new Vector3(idealAngle.x, 0, idealAngle.z), new Vector3(currentAngle.x, 0, currentAngle.z));
-        float xdiff = Vector3.SignedAngle(new Vector3(0, idealAngle.y, idealAngle.z), new Vector3(0, currentAngle.y, currentAngle.z), transform.right);
+        // Debug.DrawLine(fuelHole.position, rotPoint.transform.position, Color.green, 2);
+        Vector3 currentAngle = nozzleCollider.transform.position - rotPoint.transform.position;
+        // Debug.DrawLine(fuelHole.position, nozzleCollider.transform.position, Color.magenta, 2);
+
+        float zdiff = Vector3.SignedAngle(new Vector3(idealAngle.x, idealAngle.y, 0), new Vector3(currentAngle.x, currentAngle.y, 0), nozzleCollider.transform.forward);
+        float xdiff = Vector3.SignedAngle(new Vector3(0, idealAngle.y, idealAngle.z), new Vector3(0, currentAngle.y, currentAngle.z), nozzleCollider.transform.right);
+
         sensor.AddObservation(xdiff);
+        xRotDist = xdiff;
         // sensor.AddObservation(ydiff);
         sensor.AddObservation(zdiff);
+        zRotDist = zdiff;
         // Debug.Log( zdiff + "|" + xdiff + "|" + straightDist);
         // Debug.Log(GetCumulativeReward());
         // Debug.DrawLine(fuelHole.position, nozzleCollider.transform.position, Color.green);
         // Debug.DrawLine(fuelHole.position, rotPoint.transform.position, Color.blue);
 
         // Debug.Log(xdiff + " " + zdiff + " " + straightDist + " " + fuelAmt);
+
+        sensor.AddObservation(fuelAmt);
     }
 
     // converts user input to actions for the arm to take
@@ -250,10 +281,10 @@ public class BoomArmMovement : Agent
                 discreteActionsOut[0] = 1;
 
             // clamp
-            if (Input.GetKey(clampKey))
+            if (Input.GetKeyDown(clampKey))
                 discreteActionsOut[1] = 1;
             else
-                discreteActionsOut[1] = 0; 
+                discreteActionsOut[1] = 0;
         }
 
 
@@ -273,7 +304,7 @@ public class BoomArmMovement : Agent
         // adjusting arm y target position
         if (contActions[0] < 0 && ArmAB.zDrive.target > pitchMin && !clamped)
         {
-            
+
             ad = ArmAB.zDrive;
             ad.target += pitchChangeSpeed * Time.deltaTime * contActions[0];
             ArmAB.zDrive = ad;
@@ -323,28 +354,9 @@ public class BoomArmMovement : Agent
         // clamping the arm into the refeul hole
         if (discActions[1] == 1)
         {
-            // if the arm is already clamped
-            if (clamped)
-            {
-                // set not clamped status
-                clamped = false;
-                // set nozzle to not collide (trigger)
-                nozzleCollider.isTrigger = true;
-                if (fuelAmt < 100)
-                    AddReward(-0.3f);
-                else
-                    AddReward(0.3f);
-            }
-            // if arm is not clamped, but is in proper clamping position
-            else if (withinClamp())
-            {
-                // set nozzle to collide (not trigger)
-                nozzleCollider.isTrigger = false;
-                // set clamped status
-                clamped = true;
-                AddReward(0.3f);
-            }
-        }  
+
+            Clamp();
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -357,6 +369,31 @@ public class BoomArmMovement : Agent
     IEnumerator waiter()
     {
         //Wait for 2 seconds
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSeconds(5);
+    }
+
+    public void Clamp()
+    {
+        // if the arm is already clamped
+        if (clamped)
+        {
+            // set not clamped status
+            clamped = false;
+            // set nozzle to not collide (trigger)
+            if (fuelAmt < 100)
+                AddReward(-0.3f);
+            else
+                AddReward(0.3f);
+            clampCollider.isTrigger = true;
+        }
+        // if arm is not clamped, but is in proper clamping position
+        else if (withinClamp())
+        {
+            // set nozzle to collide (not trigger)
+            // set clamped status
+            clamped = true;
+            AddReward(0.3f);
+            clampCollider.isTrigger = false;
+        }
     }
 }

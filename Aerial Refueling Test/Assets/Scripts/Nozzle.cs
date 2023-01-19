@@ -21,9 +21,12 @@ public class Nozzle : MonoBehaviour
             else if (bam.fuelAmt >= 100)
                 bam.AddReward(-0.0001f);
         }
-        else if (other.gameObject.tag == "funnel")
+        else if (other.gameObject.tag == "funnel" || other.gameObject.tag == "arm")
         { }
         else
+        {
+
+        }
             bam.AddReward(-0.000005f);
     }
 }
