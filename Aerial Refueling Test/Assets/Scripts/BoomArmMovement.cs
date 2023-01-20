@@ -42,6 +42,7 @@ public class BoomArmMovement : Agent
     public KeyCode clampKey;
     public bool keyboardMode;
     public bool joystickMode;
+    public bool autoMode;
     private InputAction moveAction;
     private InputAction extendAction;
     private InputAction retractAction;
@@ -64,10 +65,6 @@ public class BoomArmMovement : Agent
     //  [1] clamp (0:nothing, 1: activate/deactivate clamp)
 
     public PlaneMovement c5movscpt;
-
-    Vector3 armStartPos;
-    Vector3 armStartRot;
-    Vector3 hoseStartPos;
 
     public float episodeRewardNum;
 
@@ -96,10 +93,6 @@ public class BoomArmMovement : Agent
         c5movscpt = transform.parent.parent.GetChild(0).GetComponent<PlaneMovement>();
         c5movscpt.Start();
 
-        armStartPos = transform.position;
-        armStartRot = transform.rotation.eulerAngles;
-        hoseStartPos = HoseAB.transform.position;
-
         clampCollider = transform.parent.parent.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<Collider>();
     }
 
@@ -123,7 +116,7 @@ public class BoomArmMovement : Agent
         {
             if (c.tag == "hole")
             {
-                Debug.Log(c.tag);
+                Debug.Log(transform.parent.parent.name + " " + c.tag);
                 return true;
             }
         }
@@ -134,6 +127,8 @@ public class BoomArmMovement : Agent
     public override void OnEpisodeBegin()
     {
         fuelAmt = 0;
+        if (clamped)
+            Clamp();
 
         //List<float> jointPositionBackup = new List<float> { 0, 0, 0, 0, 0, 0, -0.01849806f, 0.2184863f, 0, 3.388485f };
         //ArmAB.GetJointPositions(jointPositionBackup);
@@ -151,7 +146,7 @@ public class BoomArmMovement : Agent
         // spawn in hole
         if (spawnInFrontOfHole > 0.60f)
         {
-            List<float> jointPositionBackup = new List<float> {0, 0, 0, 0, 0, 0, -0.01972235f, 0.2663373f, 0, 2.478287f};
+            List<float> jointPositionBackup = new List<float> {-0.01972235f, 0.2663373f, 0, 2.478287f};
             ArmAB.SetJointPositions(jointPositionBackup);
             c5movscpt.SpawnPlane(false);
             driveZ.target = 15.26f;
@@ -164,7 +159,7 @@ public class BoomArmMovement : Agent
         // spawn random
         else
         {
-            List<float> jointPositionBackup = new List<float> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            List<float> jointPositionBackup = new List<float> {0, 0, 0, 0 };
             ArmAB.SetJointPositions(jointPositionBackup);
             hoseZ.target = 0f;
             driveZ.target = 0f;
@@ -199,14 +194,22 @@ public class BoomArmMovement : Agent
 
         // straight distance between nozzle and fuel hole
         float straightDist = Vector3.Distance(nozzleCollider.transform.position, fuelHole.transform.position);
-        sensor.AddObservation(straightDist);
-        nozzDist = straightDist;
+        if (straightDist < 0.05)
+        {
+            sensor.AddObservation(0);
+            nozzDist = 0;
+        }
+        else
+        {
+            sensor.AddObservation(straightDist);
+            nozzDist = straightDist;
+        }
         // add reward for being close when needing to fuel, and being far away when done fueling
         // 0.0001 -> 0.000001 ish per frame
         if (fuelAmt < 100)
-            AddReward((-straightDist / 80000) + .0000025f);
+            AddReward((-straightDist / 20000) + .0000025f);
         else
-            AddReward(straightDist / 80000);
+            AddReward(straightDist / 20000);
 
         // Debug.Log((-straightDist / 80000) + .0000025f);
         // Debug.Log(xyzDiff.x  + "|" + xyzDiff.y + "|" + xyzDiff.z + "|" + straightDist + " || " + GetCumulativeReward());
@@ -219,6 +222,10 @@ public class BoomArmMovement : Agent
         float zdiff = Vector3.SignedAngle(new Vector3(idealAngle.x, idealAngle.y, 0), new Vector3(currentAngle.x, currentAngle.y, 0), nozzleCollider.transform.forward);
         float xdiff = Vector3.SignedAngle(new Vector3(0, idealAngle.y, idealAngle.z), new Vector3(0, currentAngle.y, currentAngle.z), nozzleCollider.transform.right);
 
+        if (Mathf.Abs(zdiff) < 0.05)
+            zdiff = 0;
+        if (Mathf.Abs(xdiff) < 0.05)
+            xdiff = 0;
         sensor.AddObservation(xdiff);
         xRotDist = xdiff;
         // sensor.AddObservation(ydiff);
@@ -232,6 +239,18 @@ public class BoomArmMovement : Agent
         // Debug.Log(xdiff + " " + zdiff + " " + straightDist + " " + fuelAmt);
 
         sensor.AddObservation(fuelAmt);
+
+        sensor.AddObservation(clamped);
+
+        
+        Vector3 nctp = nozzleCollider.transform.position;
+        Vector3 fhp = fuelHole.position;
+        sensor.AddObservation(nctp.x);
+        sensor.AddObservation(nctp.y);
+        sensor.AddObservation(nctp.z);
+        sensor.AddObservation(fhp.x);
+        sensor.AddObservation(fhp.y);
+        sensor.AddObservation(fhp.z);
     }
 
     // converts user input to actions for the arm to take
@@ -274,19 +293,59 @@ public class BoomArmMovement : Agent
 
             // extension amount
             if (Input.GetKey(extend))
-                discreteActionsOut[0] = 2;
+                continuousActionsOut[2] = 1;
             else if (Input.GetKey(retract))
-                discreteActionsOut[0] = 0;
+                continuousActionsOut[2] = -1;
             else
-                discreteActionsOut[0] = 1;
+                continuousActionsOut[2] = 0;
 
             // clamp
             if (Input.GetKeyDown(clampKey))
-                discreteActionsOut[1] = 1;
+                discreteActionsOut[0] = 1;
             else
-                discreteActionsOut[1] = 0;
+                discreteActionsOut[0] = 0;
         }
 
+        else if (autoMode)
+        {
+            // no movement
+            discreteActionsOut[0] = 0;
+            continuousActionsOut[0] = 0;
+            continuousActionsOut[1] = 0;
+            continuousActionsOut[2] = 0;
+
+            if (fuelAmt < 100)
+            {
+                // moving arm side to side
+                if (Mathf.Abs(xRotDist) > 1 || Mathf.Abs(zRotDist) > 1)
+                {
+                    continuousActionsOut[0] = Mathf.Clamp(xRotDist / 5, -1, 1);
+                    continuousActionsOut[1] = Mathf.Clamp(zRotDist / 5, -1, 1);
+                }
+                // in hole
+                else if (nozzDist == 0 && !clamped)
+                    Clamp();
+                // side to side is correct, but forward/backward needs help
+                else
+                {
+                    continuousActionsOut[0] = Mathf.Clamp(xRotDist / 10, -1, 1);
+                    continuousActionsOut[1] = Mathf.Clamp(zRotDist / 10, -1, 1);
+                    // extend arm
+                    continuousActionsOut[2] = Mathf.Clamp(nozzDist / 10, -1, 1);
+                }
+            }
+            // fuel amt >= 100
+            else
+            {
+                if (clamped)
+                    Clamp();
+                else if (nozzDist < 7)
+                {
+                    // retract arm
+                    continuousActionsOut[2] = -Mathf.Clamp(1 / (nozzDist + 0.0001f), -1, 1);   
+                }
+            }
+        }
 
     }
 
@@ -331,30 +390,29 @@ public class BoomArmMovement : Agent
         }
 
         // extending / retracting arm
-        if (discActions[0] == 2 && HoseAB.zDrive.target < extendMax && !clamped)
+        if (contActions[2] > 0 && HoseAB.zDrive.target < extendMax && !clamped)
         {
             // get articulation Z drive
             ad = HoseAB.zDrive;
             // change articulation Z drive target value
-            ad.target += extendSpeed * Time.deltaTime;
+            ad.target += extendSpeed * Time.deltaTime * contActions[2];
             // set articulation Z drive 
             HoseAB.zDrive = ad;
         }
-        if (discActions[0] == 0 && HoseAB.zDrive.target > extendMin && !clamped)
+        if (contActions[2] < 0 && HoseAB.zDrive.target > extendMin && !clamped)
         {
             // get articulation Z drive
             ad = HoseAB.zDrive;
             // change articulation Z drive target value
-            ad.target -= extendSpeed * Time.deltaTime;
+            ad.target += extendSpeed * Time.deltaTime * contActions[2];
             // set articulation Z drive 
             HoseAB.zDrive = ad;
         }
 
 
         // clamping the arm into the refeul hole
-        if (discActions[1] == 1)
+        if (discActions[0] == 1)
         {
-
             Clamp();
         }
     }
@@ -384,7 +442,7 @@ public class BoomArmMovement : Agent
                 AddReward(-0.3f);
             else
                 AddReward(0.3f);
-            clampCollider.isTrigger = true;
+            clampCollider.enabled = false;
         }
         // if arm is not clamped, but is in proper clamping position
         else if (withinClamp())
@@ -392,8 +450,11 @@ public class BoomArmMovement : Agent
             // set nozzle to collide (not trigger)
             // set clamped status
             clamped = true;
-            AddReward(0.3f);
-            clampCollider.isTrigger = false;
+            if (fuelAmt < 100)
+                AddReward(0.3f);
+            else
+                AddReward(-0.3f);
+            clampCollider.enabled = false;
         }
     }
 }

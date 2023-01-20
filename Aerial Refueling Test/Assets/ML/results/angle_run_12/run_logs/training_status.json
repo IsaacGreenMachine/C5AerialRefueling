@@ -2,40 +2,58 @@
     "RefuelArm": {
         "checkpoints": [
             {
-                "steps": 499968,
-                "file_path": "results/angle_run_12/RefuelArm/RefuelArm-499968.onnx",
-                "reward": null,
-                "creation_time": 1674091753.922956,
+                "steps": 5499968,
+                "file_path": "results/angle_run_12/RefuelArm/RefuelArm-5499968.onnx",
+                "reward": -0.04776354716159403,
+                "creation_time": 1674101754.814813,
                 "auxillary_file_paths": [
-                    "results/angle_run_12/RefuelArm/RefuelArm-499968.pt"
+                    "results/angle_run_12/RefuelArm/RefuelArm-5499968.pt"
                 ]
             },
             {
-                "steps": 999936,
-                "file_path": "results/angle_run_12/RefuelArm/RefuelArm-999936.onnx",
-                "reward": -0.08618011868384201,
-                "creation_time": 1674092523.438197,
+                "steps": 5999872,
+                "file_path": "results/angle_run_12/RefuelArm/RefuelArm-5999872.onnx",
+                "reward": null,
+                "creation_time": 1674102528.7772942,
                 "auxillary_file_paths": [
-                    "results/angle_run_12/RefuelArm/RefuelArm-999936.pt"
+                    "results/angle_run_12/RefuelArm/RefuelArm-5999872.pt"
                 ]
             },
             {
-                "steps": 1072128,
-                "file_path": "results/angle_run_12/RefuelArm/RefuelArm-1072128.onnx",
-                "reward": null,
-                "creation_time": 1674092643.4444711,
+                "steps": 6499968,
+                "file_path": "results/angle_run_12/RefuelArm/RefuelArm-6499968.onnx",
+                "reward": -0.06650478692608885,
+                "creation_time": 1674103300.579266,
                 "auxillary_file_paths": [
-                    "results/angle_run_12/RefuelArm/RefuelArm-1072128.pt"
+                    "results/angle_run_12/RefuelArm/RefuelArm-6499968.pt"
+                ]
+            },
+            {
+                "steps": 6999936,
+                "file_path": "results/angle_run_12/RefuelArm/RefuelArm-6999936.onnx",
+                "reward": null,
+                "creation_time": 1674104073.804575,
+                "auxillary_file_paths": [
+                    "results/angle_run_12/RefuelArm/RefuelArm-6999936.pt"
+                ]
+            },
+            {
+                "steps": 7470992,
+                "file_path": "results/angle_run_12/RefuelArm/RefuelArm-7470992.onnx",
+                "reward": -0.013620749042047464,
+                "creation_time": 1674104813.846508,
+                "auxillary_file_paths": [
+                    "results/angle_run_12/RefuelArm/RefuelArm-7470992.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 1072128,
+            "steps": 7470992,
             "file_path": "results/angle_run_12/RefuelArm.onnx",
-            "reward": null,
-            "creation_time": 1674092643.4444711,
+            "reward": -0.013620749042047464,
+            "creation_time": 1674104813.846508,
             "auxillary_file_paths": [
-                "results/angle_run_12/RefuelArm/RefuelArm-1072128.pt"
+                "results/angle_run_12/RefuelArm/RefuelArm-7470992.pt"
             ]
         }
     },

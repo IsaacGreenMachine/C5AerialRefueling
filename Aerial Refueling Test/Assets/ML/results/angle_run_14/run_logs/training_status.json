@@ -1,0 +1,47 @@
+{
+    "RefuelArm": {
+        "checkpoints": [
+            {
+                "steps": 499400,
+                "file_path": "results/angle_run_14/RefuelArm/RefuelArm-499400.onnx",
+                "reward": null,
+                "creation_time": 1674159318.097712,
+                "auxillary_file_paths": [
+                    "results/angle_run_14/RefuelArm/RefuelArm-499400.pt"
+                ]
+            },
+            {
+                "steps": 999400,
+                "file_path": "results/angle_run_14/RefuelArm/RefuelArm-999400.onnx",
+                "reward": null,
+                "creation_time": 1674160614.38858,
+                "auxillary_file_paths": [
+                    "results/angle_run_14/RefuelArm/RefuelArm-999400.pt"
+                ]
+            },
+            {
+                "steps": 1321600,
+                "file_path": "results/angle_run_14/RefuelArm/RefuelArm-1321600.onnx",
+                "reward": null,
+                "creation_time": 1674161445.35519,
+                "auxillary_file_paths": [
+                    "results/angle_run_14/RefuelArm/RefuelArm-1321600.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1321600,
+            "file_path": "results/angle_run_14/RefuelArm.onnx",
+            "reward": null,
+            "creation_time": 1674161445.35519,
+            "auxillary_file_paths": [
+                "results/angle_run_14/RefuelArm/RefuelArm-1321600.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.11.0"
+    }
+}
