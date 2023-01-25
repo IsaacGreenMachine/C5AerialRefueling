@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using System;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 public class PlaneMovement : MonoBehaviour
 {
     /// <summary>
     /// determines how fast the plane will roll
     /// </summary>
-    [Range(0f, 100f)]
+    [Range(0f, 1000f)]
     public float rollSpeed;
 
     /// <summary>
     /// determines how fast the plane will pitch
     /// </summary>
-    [Range(0f, 100f)]
+    [Range(0f, 1000f)]
     public float pitchSpeed;
 
     /// <summary>
@@ -44,13 +48,13 @@ public class PlaneMovement : MonoBehaviour
     /// <summary>
     /// at what speed the refueller is moving (makes the C5 move forward or backward relative to it)
     /// </summary>
-    [Range(0f, 10f)]
+    [Range(0f, 100f)]
     public float refuellerSpeed;
 
     /// <summary>
     /// determines how quickly the plane rises and falls
     /// </summary>
-    [Range(0f, 100f)]
+    [Range(0f, 2000f)]
     public float lift;
 
     public Rigidbody plane;
@@ -58,13 +62,13 @@ public class PlaneMovement : MonoBehaviour
     /// <summary>
     /// controls how quickly the plane will yaw
     /// </summary>
-    [Range(0f, 100f)]
+    [Range(0f, 1000f)]
     public float yawSpeed;
 
     /// <summary>
     /// how much the roll of the plane will move the plane left/right
     /// </summary>
-    [Range(0f, 100f)]
+    [Range(0f, 1000f)]
     public float LRSpeed;
 
     /// <summary>
@@ -93,8 +97,8 @@ public class PlaneMovement : MonoBehaviour
     public KeyCode throttleDown;
 
     // Grab GameObject to calculate distance between plane and refueller
-    GameObject C5go;
-    GameObject KC135go;
+    public GameObject C5go;
+    public GameObject KC135go;
     Vector3 C5;
     Vector3 KC135;
 
@@ -113,6 +117,21 @@ public class PlaneMovement : MonoBehaviour
     public float minMaxRotationZ = 120;
 
     public bool targetMode;
+
+    public bool keyboardMode;
+    public bool joystickMode;
+    public bool controllerMode;
+    public bool playerC5;
+
+    private PlayerInput playerInput;
+
+    private InputAction moveAction;
+    private InputAction thrustAction;
+    private InputAction yawAction;
+
+    private InputAction moveActionController;
+    private InputAction thrustActionController;
+    private InputAction yawActionController;
     public Vector3 targetPos;
     public float rollMax;
     public float pitchMax;
@@ -120,7 +139,37 @@ public class PlaneMovement : MonoBehaviour
     Vector3 startPos;
     Quaternion startRot;
 
+    private Boolean volumetricClouds;
+    private Boolean fogToggle;
+    private int timeOfDay;
 
+    public GameObject volumetricCloudsObject;
+    public GameObject fogObject;
+
+    public Volume volume;
+    VolumetricClouds cloud;
+    VolumetricClouds clouds;
+    Fog fogVolume;
+    Fog fog;
+
+    public GameObject sun;
+
+    public EndScreen EndScreen;
+    public BoomArmMovement BoomArmMovement;
+    public float fuel;
+    public int C5Counter;
+
+    public float distanceX;
+    public float distanceY;
+    public float distanceZ;
+
+    bool intToBool(int val)
+    {
+        if (val != 0)
+            return true;
+        else
+            return false;
+    }
 
     public void Start()
     {
@@ -128,11 +177,55 @@ public class PlaneMovement : MonoBehaviour
         startPos = transform.localPosition;
         // Debug.Log(startPos);
         startRot = transform.rotation;
+
+        playerInput = GetComponent<PlayerInput>();
+        moveAction = playerInput.actions["Move2"];
+        thrustAction = playerInput.actions["Thrust2"];
+        yawAction = playerInput.actions["Yaw2"];
+
+        moveActionController = playerInput.actions["Move1"];
+        thrustActionController = playerInput.actions["Thrust1"];
+        yawActionController = playerInput.actions["Yaw1"];
+
+
+        keyboardMode = intToBool(PlayerPrefs.GetInt("inputKeyboardC5"));
+        joystickMode = intToBool(PlayerPrefs.GetInt("inputJoystickC5"));
+        controllerMode = intToBool(PlayerPrefs.GetInt("inputControllerC5"));
+
+        playerC5 = intToBool(PlayerPrefs.GetInt("playerC5"));
+
+        volumetricClouds = intToBool(PlayerPrefs.GetInt("volumetricCloudsBool"));
+        fogToggle = intToBool(PlayerPrefs.GetInt("fogBool"));
+        timeOfDay = PlayerPrefs.GetInt("TimeOfDay");
+
+        volume = volumetricCloudsObject.GetComponent<Volume>();
+        
+        if (volume.profile.TryGet<VolumetricClouds>(out cloud))
+        {
+            clouds = cloud;
+        }
+        if (volume.profile.TryGet<Fog>(out fogVolume))
+        {
+            fog = fogVolume;
+        }
+        clouds.active = volumetricClouds;
+        fog.active = fogToggle;
+
+        sun.transform.rotation = Quaternion.Euler((timeOfDay * 15 - 90), 0, 0);
+
+        if (!playerC5)
+        {
+            targetMode = true;
+        }
+        else if (playerC5 && !keyboardMode && !joystickMode && !controllerMode)
+        {
+            keyboardMode = true;
+        }
     }
 
     void Update()
     {
-        // ResetPlane();
+        ResetPlane();
 
         // creating blank torque force
         Vector3 torq = new(0, 0, 0);
@@ -199,29 +292,84 @@ public class PlaneMovement : MonoBehaviour
 
         else
         {
-            // adding roll to torque vector
-            if (Input.GetKey(left))
-                torq += 0.01f * rollSpeed * Time.deltaTime * transform.forward;
-            if (Input.GetKey(right))
-                torq -= 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+            if (keyboardMode)
+            {
+                // adding roll to torque vector
+                if (Input.GetKey(left))
+                    torq += 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+                if (Input.GetKey(right))
+                    torq -= 0.01f * rollSpeed * Time.deltaTime * transform.forward;
 
-            // adding pitch to torque vector
-            if (Input.GetKey(forward))
-                torq += 0.01f * pitchSpeed * Time.deltaTime * transform.right;
-            if (Input.GetKey(backward))
-                torq -= 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+                // adding pitch to torque vector
+                if (Input.GetKey(forward))
+                    torq += 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+                if (Input.GetKey(backward))
+                    torq -= 0.01f * pitchSpeed * Time.deltaTime * transform.right;
 
-            // adding yaw to torque vector
-            if (Input.GetKey(yawL))
-                torq -= 0.01f * Time.deltaTime * yawSpeed * transform.up;
-            if (Input.GetKey(yawR))
-                torq += 0.01f * Time.deltaTime * yawSpeed * transform.up;
+                // adding yaw to torque vector
+                if (Input.GetKey(yawL))
+                    torq -= 0.01f * Time.deltaTime * yawSpeed * transform.up;
+                if (Input.GetKey(yawR))
+                    torq += 0.01f * Time.deltaTime * yawSpeed * transform.up;
 
-            // setting throttle amount
-            if (Input.GetKey(throttleUp))
-                throttle = Mathf.Clamp(throttle + (throttleChange * Time.deltaTime), -1, 1);
-            if (Input.GetKey(throttleDown))
-                throttle = Mathf.Clamp(throttle - (throttleChange * Time.deltaTime), -1, 1);
+                // setting throttle amount
+                if (Input.GetKey(throttleUp))
+                    throttle = Mathf.Clamp(throttle + (throttleChange * Time.deltaTime), -1, 1);
+                if (Input.GetKey(throttleDown))
+                    throttle = Mathf.Clamp(throttle - (throttleChange * Time.deltaTime), -1, 1);
+            }
+            else if (joystickMode)
+            {
+                // adding roll to torque vector
+                if (moveAction.ReadValue<Vector2>().x < 0)
+                    torq += 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+                if (moveAction.ReadValue<Vector2>().x > 0)
+                    torq -= 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+
+                // adding pitch to torque vector
+                if (moveAction.ReadValue<Vector2>().y > 0)
+                    torq += 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+                if (moveAction.ReadValue<Vector2>().y < 0)
+                    torq -= 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+
+                // adding yaw to torque vector
+                if (yawAction.ReadValue<float>() < 0)
+                    torq -= 0.01f * Time.deltaTime * yawSpeed * transform.up;
+                if (yawAction.ReadValue<float>() > 0)
+                    torq += 0.01f * Time.deltaTime * yawSpeed * transform.up;
+
+                // setting throttle amount
+                if (thrustAction.ReadValue<float>() > 0)
+                    throttle = Mathf.Clamp(throttle + (thrustAction.ReadValue<float>() * throttleChange * Time.deltaTime), -1, 1);
+                if (thrustAction.ReadValue<float>() < 0)
+                    throttle = Mathf.Clamp(throttle + (thrustAction.ReadValue<float>() * throttleChange * Time.deltaTime), -1, 1);
+            }
+            else if (controllerMode)
+            {
+                // adding roll to torque vector
+                if (moveActionController.ReadValue<Vector2>().x < 0)
+                    torq += 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+                if (moveActionController.ReadValue<Vector2>().x > 0)
+                    torq -= 0.01f * rollSpeed * Time.deltaTime * transform.forward;
+
+                // adding pitch to torque vector
+                if (moveActionController.ReadValue<Vector2>().y > 0)
+                    torq += 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+                if (moveActionController.ReadValue<Vector2>().y < 0)
+                    torq -= 0.01f * pitchSpeed * Time.deltaTime * transform.right;
+
+                // adding yaw to torque vector
+                if (yawActionController.ReadValue<float>() < 0)
+                    torq -= 0.01f * Time.deltaTime * yawSpeed * transform.up;
+                if (yawActionController.ReadValue<float>() > 0)
+                    torq += 0.01f * Time.deltaTime * yawSpeed * transform.up;
+
+                // setting throttle amount
+                if (thrustActionController.ReadValue<float>() > 0)
+                    throttle = Mathf.Clamp(throttle + (thrustActionController.ReadValue<float>() * throttleChange * Time.deltaTime), -1, 1);
+                if (thrustActionController.ReadValue<float>() < 0)
+                    throttle = Mathf.Clamp(throttle + (thrustActionController.ReadValue<float>() * throttleChange * Time.deltaTime), -1, 1);
+            }
         }
 
         // getting angle of the plane
@@ -281,51 +429,74 @@ public class PlaneMovement : MonoBehaviour
         else if (s == "flat")
         {
             foreach (GameObject flap in flapsLeft)
-                flap.transform.eulerAngles = Vector3.zero;            
+                flap.transform.eulerAngles = Vector3.zero;
             foreach (GameObject flap in flapsRight)
                 flap.transform.eulerAngles = Vector3.zero;
         }
     }
-    
+
     void ResetPlane()
     {
         C5 = C5go.transform.position;
         KC135 = KC135go.transform.position;
+        fuel = BoomArmMovement.fuelAmt;
 
         Vector3 difference = new Vector3(C5.x - KC135.x, C5.y - KC135.y, C5.z - KC135.z);
 
-        float distanceX = difference.x;
-        float distanceY = difference.y;
-        float distanceZ = difference.z;
+        distanceX = difference.x;
+        distanceY = difference.y;
+        distanceZ = difference.z;
 
-        if (distanceX >  minMaxDistanceX || distanceX < -minMaxDistanceX || distanceY > minMaxDistanceY || distanceY < -minMaxDistanceY || distanceZ > 20 || distanceZ < -minMaxDistanceZ)
+        if (fuel >= 100)
         {
-
-        // Debug.Log("X: " + distanceX + " Y: " + distanceY + " Z: " + distanceZ);
-
-        if (distanceX > 60 || distanceX < -60 || distanceY > 60 || distanceY < -60 || distanceZ > 60 || distanceZ < -100)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Debug.Log("Scene reset!!!!!!!!!");
+            if (!playerC5 && !BoomArmMovement.clamped)
+            {
+                EndScreen.SetUp();
+            }
+            else
+            {
+                if (distanceX > 60 || distanceX < -60 || distanceY > 60 || distanceY < -60 || distanceZ > 30 || distanceZ < -50)
+                    EndScreen.SetUp();
+            }
         }
+        else
+        {
+            if (distanceX > 60 || distanceX < -60 || distanceY > 60 || distanceY < -60 || distanceZ > 60 || distanceZ < -100)
+                EndScreen.SetUp();
+        }
+        
     }
 
-    public void SpawnPlane(bool randPos)
+    
+    private void OnCollisionStay(Collision collision)
     {
-        transform.localPosition = startPos;
-        transform.rotation = startRot;
-
-        if (randPos)
+        if (collision.gameObject.tag == "KC135")
         {
-            float rangeRotationX = Random.Range(-2.5f, 2.5f);
-            float rangeRotationY = Random.Range(-2.5f, 2.5f);
-            float rangeRotationZ = Random.Range(-5, 5);
-            float rangeDistanceZ = Random.Range(-1.25f, 1.25f);
-            float rangeDistanceX = Random.Range(-0.75f, 0.75f);
-            float rangeDistanceY = Random.Range(-0.2f, 0.2f);
-
-            transform.rotation = Quaternion.Euler(rangeRotationX, rangeRotationY, rangeRotationZ);
-            transform.position += new Vector3(rangeDistanceX, rangeDistanceY, rangeDistanceZ);
+            Debug.Log(C5Counter);
+            if (C5Counter >= 100)
+                EndScreen.SetUp();
+            else
+                C5Counter++;
         }
-
     }
+
+
+       public void SpawnPlane(bool randPos)
+        {
+            transform.localPosition = startPos;
+            transform.rotation = startRot;
+
+            if (randPos)
+            {
+                float rangeRotationX = UnityEngine.Random.Range(-2.5f, 2.5f);
+                float rangeRotationY = UnityEngine.Random.Range(-2.5f, 2.5f);
+                float rangeRotationZ = UnityEngine.Random.Range(-5, 5);
+                float rangeDistanceZ = UnityEngine.Random.Range(-1.25f, 1.25f);
+                float rangeDistanceX = UnityEngine.Random.Range(-0.75f, 0.75f);
+                float rangeDistanceY = UnityEngine.Random.Range(-0.2f, 0.2f);
+
+                transform.rotation = Quaternion.Euler(rangeRotationX, rangeRotationY, rangeRotationZ);
+                transform.position += new Vector3(rangeDistanceX, rangeDistanceY, rangeDistanceZ);
+            }
+        }
 }

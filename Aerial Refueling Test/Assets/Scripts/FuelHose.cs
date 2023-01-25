@@ -16,6 +16,4 @@ public class FuelHose : MonoBehaviour
         if (collision.gameObject.layer == 6)
             bam.AddReward(-0.00005f);
     }
-
-
 }

@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: d8d29e184b0a1de4f98b12b357870af1
   - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 795090c74cf3cf24cb1ac768683c2d8b
+  - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: 15df0601779941845b01a3c614804f33
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Joystick.unity
     guid: 7797f887487b7394db1dc6f8a7afaf12

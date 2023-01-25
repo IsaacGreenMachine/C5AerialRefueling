@@ -1,13 +1,15 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Nozzle : MonoBehaviour
 {
     BoomArmMovement bam;
+    public int CollisionCounter;
+
     private void Start()
     {
         bam = transform.parent.parent.GetComponent<BoomArmMovement>();
+        CollisionCounter = 300;
     }
 
     private void OnTriggerStay(Collider other)
@@ -21,12 +23,13 @@ public class Nozzle : MonoBehaviour
             else if (bam.fuelAmt >= 100)
                 bam.AddReward(-0.0001f);
         }
-        else if (other.gameObject.tag == "funnel" || other.gameObject.tag == "arm")
+        else if (other.gameObject.tag == "funnel" || other.gameObject.tag == "fa")
         { }
         else
         {
-
+            CollisionCounter--;
+            Debug.Log(CollisionCounter);
         }
-            bam.AddReward(-0.000005f);
+        bam.AddReward(-0.000005f);
     }
 }
