@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 249.11858, g: 369.15585, b: 618.49524, a: 1}
+  m_IndirectSpecularColor: {r: 242.92917, g: 356.79446, b: 595.88214, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14124,19 +14124,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4098917488182193520, guid: da4b12af76159d141afb0da582496c80, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -15.7
       objectReference: {fileID: 0}
     - target: {fileID: 4098917488182193520, guid: da4b12af76159d141afb0da582496c80, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.5
+      value: -30.1
       objectReference: {fileID: 0}
     - target: {fileID: 4098917488182193520, guid: da4b12af76159d141afb0da582496c80, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99813485
       objectReference: {fileID: 0}
     - target: {fileID: 4098917488182193520, guid: da4b12af76159d141afb0da582496c80, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.061048605
       objectReference: {fileID: 0}
     - target: {fileID: 4098917488182193520, guid: da4b12af76159d141afb0da582496c80, type: 3}
       propertyPath: m_LocalRotation.y
@@ -14148,7 +14148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4098917488182193520, guid: da4b12af76159d141afb0da582496c80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 4098917488182193520, guid: da4b12af76159d141afb0da582496c80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -24462,7 +24462,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &1001776787
 MonoBehaviour:
@@ -24772,11 +24772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4804909688726307694, guid: 9eefcf1ca16b9f542b415e25917abb82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8
+      value: -3.0303211
       objectReference: {fileID: 0}
     - target: {fileID: 4804909688726307694, guid: 9eefcf1ca16b9f542b415e25917abb82, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 31
+      value: 52.95
       objectReference: {fileID: 0}
     - target: {fileID: 4804909688726307694, guid: 9eefcf1ca16b9f542b415e25917abb82, type: 3}
       propertyPath: m_LocalRotation.w
@@ -24854,7 +24854,7 @@ MonoBehaviour:
   pitchSpeed: 200
   AngOfAttack: 7
   throttle: 0
-  throttleChange: 0.015
+  throttleChange: 0
   throttleSpeed: 0
   refuellerSpeed: 0
   lift: 6
