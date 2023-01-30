@@ -169,6 +169,9 @@ public class BoomArmMovement : Agent
         }
         else if (!BoomArmMode)
         {
+            autoMode = true;
+            behaviorParameters = transform.GetComponent<BehaviorParameters>();
+            behaviorParameters.BehaviorType = BehaviorType.HeuristicOnly;
         }
 
 
@@ -183,9 +186,13 @@ public class BoomArmMovement : Agent
     {
         counter = nozzle.CollisionCounter;
 
-        if (Mathf.Abs(c5movscpt.distanceZ) < 36)
+        if (Mathf.Abs(c5movscpt.distanceZ) < 34)
         {
             closeEnough = true;
+        }
+        else
+        {
+            closeEnough = false;
         }
 
         if (counter <= 0 || Input.GetKeyDown(KeyCode.Escape))
@@ -485,46 +492,49 @@ public class BoomArmMovement : Agent
             else
                 discreteActionsOut[0] = 0;
         }
-        /*else if (autoMode && closeEnough)
+        else if (autoMode && closeEnough)
         {
-            // no movement
-            discreteActionsOut[0] = 1;
-            discreteActionsOut[1] = 0;
-            continuousActionsOut[0] = 0;
-            continuousActionsOut[1] = 0;
+            behaviorParameters = transform.GetComponent<BehaviorParameters>();
+            behaviorParameters.BehaviorType = BehaviorType.Default;
+            /* // no movement
+             discreteActionsOut[0] = 1;
+             discreteActionsOut[1] = 0;
+             continuousActionsOut[0] = 0;
+             continuousActionsOut[1] = 0;
 
-            if (fuelAmt < 100)
-            {
-                // moving arm side to side
-                if (Mathf.Abs(xRotDist) > 0.5f || Mathf.Abs(zRotDist) > 0.5f)
-                {
-                    continuousActionsOut[0] = Mathf.Clamp(xRotDist, -1, 1) / 5;
-                    continuousActionsOut[1] = Mathf.Clamp(zRotDist, -1, 1) / 5;
-                }
-                // in hole
-                else if (nozzDist == 0 && !clamped)
-                    Clamp();
-                // side to side is correct, but forward/backward needs help
-                else
-                {
-                    continuousActionsOut[0] = Mathf.Clamp(xRotDist, -1, 1) / 10;
-                    continuousActionsOut[1] = Mathf.Clamp(zRotDist, -1, 1) / 10;
-                    // extend arm
-                    discreteActionsOut[0] = 2;
-                }
-            }
-            // fuel amt >= 100
-            else
-            {
-                if (clamped)
-                    Clamp();
-                else
-                {
-                    // retract arm
-                    discreteActionsOut[0] = 0;
-                }
-            }
-        }*/
+             if (fuelAmt < 100)
+             {
+                 // moving arm side to side
+                 if (Mathf.Abs(xRotDist) > 0.5f || Mathf.Abs(zRotDist) > 0.5f)
+                 {
+                     continuousActionsOut[0] = Mathf.Clamp(xRotDist, -1, 1) / 5;
+                     continuousActionsOut[1] = Mathf.Clamp(zRotDist, -1, 1) / 5;
+                 }
+                 // in hole
+                 else if (nozzDist == 0 && !clamped)
+                     Clamp();
+                 // side to side is correct, but forward/backward needs help
+                 else
+                 {
+                     continuousActionsOut[0] = Mathf.Clamp(xRotDist, -1, 1) / 10;
+                     continuousActionsOut[1] = Mathf.Clamp(zRotDist, -1, 1) / 10;
+                     // extend arm
+                     discreteActionsOut[0] = 2;
+                 }
+             }
+             // fuel amt >= 100
+             else
+             {
+                 if (clamped)
+                     Clamp();
+                 else
+                 {
+                     // retract arm
+                     discreteActionsOut[0] = 0;
+                 }
+             }*/
+
+        }
     }
 
     // takes input from user or neural network and acts in scene

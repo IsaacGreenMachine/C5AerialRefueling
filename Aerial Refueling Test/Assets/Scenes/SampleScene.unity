@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 242.92917, g: 356.79446, b: 595.88214, a: 1}
+  m_IndirectSpecularColor: {r: 242.684, g: 356.9195, b: 596.2626, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1507,7 +1507,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: 71c127be7554740acaf60e2e36c196a0, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: RefuelArm
   TeamId: 0
   m_UseChildSensors: 1
@@ -24434,7 +24434,7 @@ MonoBehaviour:
   joystickMode: 0
   controllerMode: 0
   playerC5: 0
-  targetPos: {x: 0, y: 0, z: 0}
+  targetPos: {x: 0, y: -8.75, z: 24.5}
   rollMax: 0
   pitchMax: 0
   volumetricCloudsObject: {fileID: 1771943266}
@@ -24776,15 +24776,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4804909688726307694, guid: 9eefcf1ca16b9f542b415e25917abb82, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.95
+      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 4804909688726307694, guid: 9eefcf1ca16b9f542b415e25917abb82, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9961947
+      value: 0.99813485
       objectReference: {fileID: 0}
     - target: {fileID: 4804909688726307694, guid: 9eefcf1ca16b9f542b415e25917abb82, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.08715578
+      value: -0.061048605
       objectReference: {fileID: 0}
     - target: {fileID: 4804909688726307694, guid: 9eefcf1ca16b9f542b415e25917abb82, type: 3}
       propertyPath: m_LocalRotation.y
@@ -24796,7 +24796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4804909688726307694, guid: 9eefcf1ca16b9f542b415e25917abb82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -10
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 4804909688726307694, guid: 9eefcf1ca16b9f542b415e25917abb82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -24872,7 +24872,7 @@ MonoBehaviour:
   yawR: 0
   throttleUp: 0
   throttleDown: 0
-  targetPos: {x: 0, y: 0, z: 53}
+  targetPos: {x: 0, y: -3.030321, z: 53}
   rollMax: 10
   pitchMax: 10
   keyboardMode: 0
@@ -29164,7 +29164,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 50
-  m_ParentAnchorPosition: {x: 0, y: -0.000025030226, z: -2.0800047}
+  m_ParentAnchorPosition: {x: 0, y: 0.0000154078, z: -2.0800006}
   m_ParentAnchorRotation: {x: 0.7071069, y: 0.7071069, z: 0, w: 0}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -30047,8 +30047,8 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 10
-  m_ParentAnchorPosition: {x: 0.0007, y: 0.0057418942, z: 4.330492}
-  m_ParentAnchorRotation: {x: -0.7070442, y: -0.7070442, z: 0.009414811, w: -0.009414811}
+  m_ParentAnchorPosition: {x: 0.0007, y: 0.005741179, z: 4.330492}
+  m_ParentAnchorRotation: {x: -0.7070443, y: -0.7070443, z: 0.0094148135, w: -0.0094148135}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_MatchAnchors: 1
