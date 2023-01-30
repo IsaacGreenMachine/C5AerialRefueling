@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 242.64787, g: 356.71753, b: 595.8644, a: 1}
+  m_IndirectSpecularColor: {r: 249.11858, g: 369.15585, b: 618.49524, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   autoMode: 0
   fuelAmt: 0
   fuelRate: 50
-  c5movscpt: {fileID: 0}
+  c5movscpt: {fileID: 1001776785}
   episodeRewardNum: 0
   xRotDist: 0
   zRotDist: 0
@@ -24399,17 +24399,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c3b977caab68546a65aaa5ef4062a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollSpeed: 5
-  pitchSpeed: 3
-  AngOfAttack: 10
+  rollSpeed: 450
+  pitchSpeed: 200
+  AngOfAttack: 7
   throttle: 0
-  throttleChange: 0.015
-  throttleSpeed: 50
-  refuellerSpeed: 2
-  lift: 6
+  throttleChange: 0.5
+  throttleSpeed: 60
+  refuellerSpeed: 60
+  lift: 2000
   plane: {fileID: 0}
-  yawSpeed: 0.8
-  LRSpeed: 8
+  yawSpeed: 200
+  LRSpeed: 1000
   flapAmount: 0
   flapsLeft: []
   flapsRight: []
@@ -24438,8 +24438,8 @@ MonoBehaviour:
   rollMax: 0
   pitchMax: 0
   volumetricCloudsObject: {fileID: 1771943266}
-  fogObject: {fileID: 1771943266}
-  volume: {fileID: 1771943267}
+  fogObject: {fileID: 0}
+  volume: {fileID: 0}
   sun: {fileID: 705507993}
   EndScreen: {fileID: 1500710336}
   BoomArmMovement: {fileID: 179466800}
@@ -24457,8 +24457,8 @@ Rigidbody:
   m_GameObject: {fileID: 1001776784}
   serializedVersion: 2
   m_Mass: 100000
-  m_Drag: 2000
-  m_AngularDrag: 2000
+  m_Drag: 0.05
+  m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -24850,17 +24850,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b6cb78597c64036a9e34561d0db025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollSpeed: 5
-  pitchSpeed: 3
-  AngOfAttack: 10
+  rollSpeed: 450
+  pitchSpeed: 200
+  AngOfAttack: 7
   throttle: 0
   throttleChange: 0.015
   throttleSpeed: 0
   refuellerSpeed: 0
   lift: 6
   plane: {fileID: 0}
-  yawSpeed: 0.8
-  LRSpeed: 8
+  yawSpeed: 200
+  LRSpeed: 1000
   flapAmount: 0
   flapsLeft: []
   flapsRight: []
@@ -25398,7 +25398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1108033230}
   m_Layer: 0
-  m_Name: ahh
+  m_Name: RealInstance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
