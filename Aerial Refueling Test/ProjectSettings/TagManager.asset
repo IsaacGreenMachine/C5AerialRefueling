@@ -9,7 +9,6 @@ TagManager:
   - bad
   - funnel
   - C5
-  
   - KC135
   - arm
   layers:
@@ -19,9 +18,9 @@ TagManager:
   - 
   - Water
   - UI
-  - C5
-  - Refueler
-  - Funnel
+  - 
+  - 
+  - 
   - 
   - 
   - 

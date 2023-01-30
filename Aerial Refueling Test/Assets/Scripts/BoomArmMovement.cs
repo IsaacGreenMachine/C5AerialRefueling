@@ -142,8 +142,8 @@ public class BoomArmMovement : Agent
         playerInput = GetComponent<PlayerInput>();
         // reading inputs from input device
         moveAction = playerInput.actions["Move2"];
-        extendAction = playerInput.actions["Extend"];
-        clampAction = playerInput.actions["Clamp"];
+        extendAction = playerInput.actions["Extend2"];
+        clampAction = playerInput.actions["Clamp2"];
 
         moveActionController = playerInput.actions["Move1"];
         extendActionController = playerInput.actions["Extend1"];
@@ -169,9 +169,6 @@ public class BoomArmMovement : Agent
         }
         else if (!BoomArmMode)
         {
-            autoMode = true;
-            behaviorParameters = transform.GetComponent<BehaviorParameters>();
-            behaviorParameters.BehaviorType = BehaviorType.HeuristicOnly;
         }
 
 
@@ -185,7 +182,6 @@ public class BoomArmMovement : Agent
     void Update()
     {
         counter = nozzle.CollisionCounter;
-        Debug.Log(counter);
 
         if (Mathf.Abs(c5movscpt.distanceZ) < 36)
         {
@@ -232,7 +228,7 @@ public class BoomArmMovement : Agent
     // called at the beginning of each episode
     public override void OnEpisodeBegin()
     {
-        fuelAmt = 0;
+        /*fuelAmt = 0;
         if (clamped)
             Clamp();
 
@@ -283,7 +279,7 @@ public class BoomArmMovement : Agent
 
         ArmAB.zDrive = driveZ;
         ArmAB.yDrive = driveY;
-        HoseAB.zDrive = hoseZ;
+        HoseAB.zDrive = hoseZ;*/
     }
 
     // 
@@ -413,12 +409,12 @@ public class BoomArmMovement : Agent
             if (clampInput == 1 && flag == 0)
             {
                 flag = 1;
-                discreteActionsOut[1] = 1;
+                discreteActionsOut[0] = 1;
             }
             else if (clampInput == 0 && flag == 1)
             {
                 flag = 0;
-                discreteActionsOut[1] = 0;
+                discreteActionsOut[0] = 0;
             }
         }
         else if (controllerMode)
@@ -485,11 +481,11 @@ public class BoomArmMovement : Agent
 
             // clamp
             if (Input.GetKeyDown(clampKey))
-                discreteActionsOut[1] = 1;
+                discreteActionsOut[0] = 1;
             else
-                discreteActionsOut[1] = 0;
+                discreteActionsOut[0] = 0;
         }
-        else if (autoMode && closeEnough)
+        /*else if (autoMode && closeEnough)
         {
             // no movement
             discreteActionsOut[0] = 1;
@@ -528,7 +524,7 @@ public class BoomArmMovement : Agent
                     discreteActionsOut[0] = 0;
                 }
             }
-        }
+        }*/
     }
 
     // takes input from user or neural network and acts in scene

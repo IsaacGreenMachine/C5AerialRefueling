@@ -1,0 +1,65 @@
+{
+    "RefuelArm": {
+        "checkpoints": [
+            {
+                "steps": 28499800,
+                "file_path": "results/angle_run_19/RefuelArm/RefuelArm-28499800.onnx",
+                "reward": null,
+                "creation_time": 1674908436.8406951,
+                "auxillary_file_paths": [
+                    "results/angle_run_19/RefuelArm/RefuelArm-28499800.pt"
+                ]
+            },
+            {
+                "steps": 28999400,
+                "file_path": "results/angle_run_19/RefuelArm/RefuelArm-28999400.onnx",
+                "reward": 4.016433545521328,
+                "creation_time": 1674909546.851372,
+                "auxillary_file_paths": [
+                    "results/angle_run_19/RefuelArm/RefuelArm-28999400.pt"
+                ]
+            },
+            {
+                "steps": 29499200,
+                "file_path": "results/angle_run_19/RefuelArm/RefuelArm-29499200.onnx",
+                "reward": null,
+                "creation_time": 1674910688.6723871,
+                "auxillary_file_paths": [
+                    "results/angle_run_19/RefuelArm/RefuelArm-29499200.pt"
+                ]
+            },
+            {
+                "steps": 29999600,
+                "file_path": "results/angle_run_19/RefuelArm/RefuelArm-29999600.onnx",
+                "reward": 3.7746864557266235,
+                "creation_time": 1674911802.2115352,
+                "auxillary_file_paths": [
+                    "results/angle_run_19/RefuelArm/RefuelArm-29999600.pt"
+                ]
+            },
+            {
+                "steps": 30003200,
+                "file_path": "results/angle_run_19/RefuelArm/RefuelArm-30003200.onnx",
+                "reward": 3.807602919638157,
+                "creation_time": 1674911803.402171,
+                "auxillary_file_paths": [
+                    "results/angle_run_19/RefuelArm/RefuelArm-30003200.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 30003200,
+            "file_path": "results/angle_run_19/RefuelArm.onnx",
+            "reward": 3.807602919638157,
+            "creation_time": 1674911803.402171,
+            "auxillary_file_paths": [
+                "results/angle_run_19/RefuelArm/RefuelArm-30003200.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.11.0"
+    }
+}

@@ -73,6 +73,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Extend2"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4d2fc6d-6be5-4923-9ea5-e87f2fbe2b1d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Clamp"",
                     ""type"": ""Button"",
                     ""id"": ""38de7c9a-5de9-4d42-ab86-0817d5d9a95b"",
@@ -85,6 +94,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""Clamp1"",
                     ""type"": ""Button"",
                     ""id"": ""8feee385-6f25-4ae3-a66e-9ae8721968a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Clamp2"",
+                    ""type"": ""Button"",
+                    ""id"": ""27e7410c-f0b7-4538-bf8e-043d908bd573"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -358,6 +376,50 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Yaw1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1cc22e2b-b9a2-4ee7-b80f-49326d5e653d"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Clamp2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""6fbd0fe5-b7f1-44fa-90d6-479c370c7ddb"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Extend2"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""03b1aa86-7c29-4120-b68f-9da21af316f2"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>/hat/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Extend2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""14e4e2ac-9149-4dc1-879d-cf14ffcd7e2b"",
+                    ""path"": ""<HID::Thrustmaster T.16000M>/hat/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Extend2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -371,8 +433,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_Move2 = m_Gameplay.FindAction("Move2", throwIfNotFound: true);
         m_Gameplay_Extend = m_Gameplay.FindAction("Extend", throwIfNotFound: true);
         m_Gameplay_Extend1 = m_Gameplay.FindAction("Extend1", throwIfNotFound: true);
+        m_Gameplay_Extend2 = m_Gameplay.FindAction("Extend2", throwIfNotFound: true);
         m_Gameplay_Clamp = m_Gameplay.FindAction("Clamp", throwIfNotFound: true);
         m_Gameplay_Clamp1 = m_Gameplay.FindAction("Clamp1", throwIfNotFound: true);
+        m_Gameplay_Clamp2 = m_Gameplay.FindAction("Clamp2", throwIfNotFound: true);
         m_Gameplay_Thrust1 = m_Gameplay.FindAction("Thrust1", throwIfNotFound: true);
         m_Gameplay_Thrust2 = m_Gameplay.FindAction("Thrust2", throwIfNotFound: true);
         m_Gameplay_Yaw1 = m_Gameplay.FindAction("Yaw1", throwIfNotFound: true);
@@ -441,8 +505,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Move2;
     private readonly InputAction m_Gameplay_Extend;
     private readonly InputAction m_Gameplay_Extend1;
+    private readonly InputAction m_Gameplay_Extend2;
     private readonly InputAction m_Gameplay_Clamp;
     private readonly InputAction m_Gameplay_Clamp1;
+    private readonly InputAction m_Gameplay_Clamp2;
     private readonly InputAction m_Gameplay_Thrust1;
     private readonly InputAction m_Gameplay_Thrust2;
     private readonly InputAction m_Gameplay_Yaw1;
@@ -456,8 +522,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move2 => m_Wrapper.m_Gameplay_Move2;
         public InputAction @Extend => m_Wrapper.m_Gameplay_Extend;
         public InputAction @Extend1 => m_Wrapper.m_Gameplay_Extend1;
+        public InputAction @Extend2 => m_Wrapper.m_Gameplay_Extend2;
         public InputAction @Clamp => m_Wrapper.m_Gameplay_Clamp;
         public InputAction @Clamp1 => m_Wrapper.m_Gameplay_Clamp1;
+        public InputAction @Clamp2 => m_Wrapper.m_Gameplay_Clamp2;
         public InputAction @Thrust1 => m_Wrapper.m_Gameplay_Thrust1;
         public InputAction @Thrust2 => m_Wrapper.m_Gameplay_Thrust2;
         public InputAction @Yaw1 => m_Wrapper.m_Gameplay_Yaw1;
@@ -486,12 +554,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Extend1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExtend1;
                 @Extend1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExtend1;
                 @Extend1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExtend1;
+                @Extend2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExtend2;
+                @Extend2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExtend2;
+                @Extend2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExtend2;
                 @Clamp.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClamp;
                 @Clamp.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClamp;
                 @Clamp.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClamp;
                 @Clamp1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClamp1;
                 @Clamp1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClamp1;
                 @Clamp1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClamp1;
+                @Clamp2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClamp2;
+                @Clamp2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClamp2;
+                @Clamp2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClamp2;
                 @Thrust1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnThrust1;
                 @Thrust1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnThrust1;
                 @Thrust1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnThrust1;
@@ -523,12 +597,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Extend1.started += instance.OnExtend1;
                 @Extend1.performed += instance.OnExtend1;
                 @Extend1.canceled += instance.OnExtend1;
+                @Extend2.started += instance.OnExtend2;
+                @Extend2.performed += instance.OnExtend2;
+                @Extend2.canceled += instance.OnExtend2;
                 @Clamp.started += instance.OnClamp;
                 @Clamp.performed += instance.OnClamp;
                 @Clamp.canceled += instance.OnClamp;
                 @Clamp1.started += instance.OnClamp1;
                 @Clamp1.performed += instance.OnClamp1;
                 @Clamp1.canceled += instance.OnClamp1;
+                @Clamp2.started += instance.OnClamp2;
+                @Clamp2.performed += instance.OnClamp2;
+                @Clamp2.canceled += instance.OnClamp2;
                 @Thrust1.started += instance.OnThrust1;
                 @Thrust1.performed += instance.OnThrust1;
                 @Thrust1.canceled += instance.OnThrust1;
@@ -552,8 +632,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove2(InputAction.CallbackContext context);
         void OnExtend(InputAction.CallbackContext context);
         void OnExtend1(InputAction.CallbackContext context);
+        void OnExtend2(InputAction.CallbackContext context);
         void OnClamp(InputAction.CallbackContext context);
         void OnClamp1(InputAction.CallbackContext context);
+        void OnClamp2(InputAction.CallbackContext context);
         void OnThrust1(InputAction.CallbackContext context);
         void OnThrust2(InputAction.CallbackContext context);
         void OnYaw1(InputAction.CallbackContext context);
