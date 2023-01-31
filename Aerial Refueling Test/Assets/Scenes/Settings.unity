@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 527037995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1332,11 +1332,8 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 749420096}
-  toggleTransition: 1
-  graphic: {fileID: 1293831873}
-  m_Group: {fileID: 0}
-  onValueChanged:
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 544243653}
@@ -1351,19 +1348,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneSetup, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 0
 --- !u!1 &528461852
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,6 +1594,9 @@ MonoBehaviour:
   inputJoystickBoomArm: 0
   inputKeyboardBoomArm: 0
   inputControllerBoomArm: 0
+  playerC5GO: {fileID: 1293831871}
+  playerKC135GO: {fileID: 703142350}
+  playerBoomArmGO: {fileID: 2095632566}
   joystickGreenC5: {fileID: 70993236}
   keyboardGreenC5: {fileID: 1133439563}
   controllerGreenC5: {fileID: 1417667323}
@@ -1619,12 +1606,14 @@ MonoBehaviour:
   joystickGreenBoomArm: {fileID: 1845053231}
   keyboardGreenBoomArm: {fileID: 1262032511}
   controllerGreenBoomArm: {fileID: 1948425506}
-  volumetricClouds: {fileID: 1779912715}
-  fog: {fileID: 1998725029}
+  fogGO: {fileID: 1446510807}
+  volumetricCloudsGO: {fileID: 1465935671}
+  volumetricClouds: {fileID: 0}
+  fog: {fileID: 0}
   TimeOfDay: {fileID: 934133395}
   slider: {fileID: 934133393}
-  volumetricCloudsBool: 1
-  fogBool: 1
+  volumetricCloudsBool: 0
+  fogBool: 0
   timeOfDayFloat: 0
 --- !u!1 &546479704
 GameObject:
@@ -1952,7 +1941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &703142351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3234,7 +3223,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1011275451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -3265,11 +3254,8 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 159273167}
-  toggleTransition: 1
-  graphic: {fileID: 2095632568}
-  m_Group: {fileID: 0}
-  onValueChanged:
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 544243653}
@@ -3284,7 +3270,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
 --- !u!1 &1033695522
 GameObject:
   m_ObjectHideFlags: 0
@@ -4012,7 +3997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1293831872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4506,7 +4491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1446510808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4717,7 +4702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1465935672
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4918,7 +4903,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1477651454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -4949,11 +4934,8 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1382734856}
-  toggleTransition: 1
-  graphic: {fileID: 703142352}
-  m_Group: {fileID: 0}
-  onValueChanged:
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 544243653}
@@ -4968,7 +4950,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
 --- !u!1 &1511114239
 GameObject:
   m_ObjectHideFlags: 0
@@ -5845,7 +5826,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1779912713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -5876,11 +5857,8 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 229611802}
-  toggleTransition: 1
-  graphic: {fileID: 1465935673}
-  m_Group: {fileID: 0}
-  onValueChanged:
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 544243653}
@@ -5895,7 +5873,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
 --- !u!1 &1809033011
 GameObject:
   m_ObjectHideFlags: 0
@@ -6501,7 +6478,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1998725027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -6532,11 +6509,8 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1033695524}
-  toggleTransition: 1
-  graphic: {fileID: 1446510809}
-  m_Group: {fileID: 0}
-  onValueChanged:
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 544243653}
@@ -6551,7 +6525,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
 --- !u!1 &2012755090
 GameObject:
   m_ObjectHideFlags: 0
@@ -6741,7 +6714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2095632567
 RectTransform:
   m_ObjectHideFlags: 0

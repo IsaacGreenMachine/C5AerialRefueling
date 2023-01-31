@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 242.684, g: 356.9195, b: 596.2626, a: 1}
+  m_IndirectSpecularColor: {r: 166.53189, g: 177.73547, b: 187.72614, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -24434,7 +24434,7 @@ MonoBehaviour:
   joystickMode: 0
   controllerMode: 0
   playerC5: 0
-  targetPos: {x: 0, y: -8.75, z: 24.5}
+  targetPos: {x: 0, y: -9, z: 26}
   rollMax: 0
   pitchMax: 0
   volumetricCloudsObject: {fileID: 1771943266}

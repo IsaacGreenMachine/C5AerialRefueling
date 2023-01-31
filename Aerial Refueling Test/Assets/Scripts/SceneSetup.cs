@@ -21,6 +21,10 @@ public class SceneSetup : MonoBehaviour
     public Boolean inputJoystickBoomArm;
     public Boolean inputKeyboardBoomArm;
     public Boolean inputControllerBoomArm;
+    
+    public GameObject playerC5GO;
+    public GameObject playerKC135GO;
+    public GameObject playerBoomArmGO;
 
     public GameObject joystickGreenC5;
     public GameObject keyboardGreenC5;
@@ -33,6 +37,9 @@ public class SceneSetup : MonoBehaviour
     public GameObject joystickGreenBoomArm;
     public GameObject keyboardGreenBoomArm;
     public GameObject controllerGreenBoomArm;
+
+    public GameObject fogGO;
+    public GameObject volumetricCloudsGO;
 
     public Toggle volumetricClouds;
     public Toggle fog;
@@ -53,7 +60,98 @@ public class SceneSetup : MonoBehaviour
     }
     void Start()
     {
+        playerC5 = intToBool(PlayerPrefs.GetInt("playerC5"));
+        playerKC135 = intToBool(PlayerPrefs.GetInt("playerKC135"));
+        playerBoomArm = intToBool(PlayerPrefs.GetInt("playerBoomArm"));
 
+        inputJoystickC5 = intToBool(PlayerPrefs.GetInt("inputJoystickC5"));
+        inputKeyboardC5 = intToBool(PlayerPrefs.GetInt("inputKeyboardC5"));
+        inputControllerC5 = intToBool(PlayerPrefs.GetInt("inputControllerC5"));
+
+        inputJoystickKC135 = intToBool(PlayerPrefs.GetInt("inputJoystickKC135"));
+        inputKeyboardKC135 = intToBool(PlayerPrefs.GetInt("inputKeyboardKC135"));
+        inputControllerKC135 = intToBool(PlayerPrefs.GetInt("inputControllerKC135"));
+
+        inputJoystickBoomArm = intToBool(PlayerPrefs.GetInt("inputJoystickBoomArm"));
+        inputKeyboardBoomArm = intToBool(PlayerPrefs.GetInt("inputKeyboardBoomArm"));
+        inputControllerBoomArm = intToBool(PlayerPrefs.GetInt("inputControllerBoomArm"));
+
+        volumetricCloudsBool = intToBool(PlayerPrefs.GetInt("volumetricCloudsBool"));
+        fogBool = intToBool(PlayerPrefs.GetInt("fogBool"));
+        timeOfDayFloat = PlayerPrefs.GetInt("TimeOfDay");
+
+        if (playerC5)
+        {
+            playerC5GO.SetActive(true);
+            if (inputJoystickC5)
+            {
+                joystickGreenC5.SetActive(true);
+            }
+            if (inputKeyboardC5)
+            {
+                keyboardGreenC5.SetActive(true);
+            }
+            if (inputControllerC5)
+            {
+                controllerGreenC5.SetActive(true);
+            }
+            else
+            {
+                inputKeyboardC5 = true;
+                keyboardGreenC5.SetActive(true);
+            }
+        }
+        if (playerKC135)
+        {
+            playerKC135GO.SetActive(true);
+            if (inputJoystickKC135)
+            {
+                joystickGreenKC135.SetActive(true);
+            }
+            if (inputKeyboardKC135)
+            {
+                keyboardGreenKC135.SetActive(true);
+            }
+            if (inputControllerKC135)
+            {
+                controllerGreenKC135.SetActive(true);
+            }
+            else
+            {
+                inputKeyboardKC135 = true;
+                keyboardGreenKC135.SetActive(true);
+            }
+        }
+        if (playerBoomArm)
+        {
+            playerBoomArmGO.SetActive(true);
+            if (inputJoystickBoomArm)
+            {
+                joystickGreenBoomArm.SetActive(true);
+            }
+            if (inputKeyboardBoomArm)
+            {
+                keyboardGreenBoomArm.SetActive(true);
+            }
+            if (inputControllerBoomArm)
+            {
+                controllerGreenBoomArm.SetActive(true);
+            }
+            else
+            {
+                inputKeyboardBoomArm = true;
+                keyboardGreenBoomArm.SetActive(true);
+            }
+        }
+        if (volumetricCloudsBool)
+        {
+            volumetricCloudsGO.SetActive(true);
+        }
+        if (fogBool)
+        {
+            fogGO.SetActive(true);
+        }
+        slider.GetComponent<Slider>().value = timeOfDayFloat;
     }
 
     // Update is called once per frame
@@ -67,6 +165,7 @@ public class SceneSetup : MonoBehaviour
         if (playerC5 == false)
         {
             playerC5 = true;
+            playerC5GO.SetActive(true);
         }
         else
         {
@@ -76,7 +175,7 @@ public class SceneSetup : MonoBehaviour
             inputControllerC5 = false;
 
 
-
+            playerC5GO.SetActive(false);
             joystickGreenC5.SetActive(false);
             keyboardGreenC5.SetActive(false);
             controllerGreenC5.SetActive(false);
@@ -88,6 +187,7 @@ public class SceneSetup : MonoBehaviour
         if (playerKC135 == false)
         {
             playerKC135 = true;
+            playerKC135GO.SetActive(true);
         }
         else
         {
@@ -97,7 +197,7 @@ public class SceneSetup : MonoBehaviour
             inputJoystickKC135 = false;
 
 
-
+            playerKC135GO.SetActive(false);
             joystickGreenKC135.SetActive(false);
             keyboardGreenKC135.SetActive(false);
             controllerGreenKC135.SetActive(false);
@@ -110,6 +210,7 @@ public class SceneSetup : MonoBehaviour
         if (playerBoomArm == false)
         {
             playerBoomArm = true;
+            playerBoomArmGO.SetActive(true);
         }
         else
         {
@@ -118,6 +219,7 @@ public class SceneSetup : MonoBehaviour
             inputKeyboardBoomArm = false;
             inputJoystickBoomArm = false;
 
+            playerBoomArmGO.SetActive(false);
             joystickGreenBoomArm.SetActive(false);
             keyboardGreenBoomArm.SetActive(false);
             controllerGreenBoomArm.SetActive(false);
@@ -350,12 +452,12 @@ public class SceneSetup : MonoBehaviour
         if (volumetricCloudsBool == false)
         {
             volumetricCloudsBool = true;
-            volumetricClouds.isOn = true;
+            volumetricCloudsGO.SetActive(true);
         }
         else
         {
             volumetricCloudsBool = false;
-            volumetricClouds.isOn = false;
+            volumetricCloudsGO.SetActive(false);
         }
     }
 
@@ -364,12 +466,12 @@ public class SceneSetup : MonoBehaviour
         if (fogBool == false)
         {
             fogBool = true;
-            fog.isOn = true;
+            fogGO.SetActive(true);
         }
         else
         {
             fogBool = false;
-            fog.isOn = false;
+            fogGO.SetActive(false);
         }
     }
     
