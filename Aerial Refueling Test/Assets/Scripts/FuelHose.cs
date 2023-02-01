@@ -12,9 +12,8 @@ public class FuelHose : MonoBehaviour
         bam = transform.parent.GetComponent<BoomArmMovement>();
     }
 
-    /// <summary>
-    /// If the fuel hose is colliding with the C5 and not the fuel hole/funnel, add bad reward.
-    /// </summary>
+
+    // If the fuel hose is colliding with the C5 and not the fuel hole/funnel, add bad reward.
     private void OnCollisionStay(Collision collision)
     {
         // if colliding with C5

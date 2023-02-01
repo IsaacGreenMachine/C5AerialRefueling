@@ -18,13 +18,11 @@ public class Nozzle : MonoBehaviour
         CollisionCounter = 300;
     }
 
-    /// <summary>
-    /// If nozzle is colliding with hole, add good reward. If nozzle is colliding with funnel, do nothing, else add bad reward.
-    /// </summary>
+    // If nozzle is colliding with hole, add good reward. If nozzle is colliding with funnel, do nothing, else add bad reward.
     private void OnTriggerStay(Collider other)
     {
         // if colliding with hole
-        if (other.gameObject.tag == "hole")
+        if (other.gameObject.CompareTag("hole"))
         {
             // if not clamped and fuel is less than 100, add good reward
             if (!bam.clamped && bam.fuelAmt < 100)
@@ -37,7 +35,7 @@ public class Nozzle : MonoBehaviour
                 bam.AddReward(-0.0001f);
         }
         // if colliding with funnel, just ignore, no bad or good reward
-        else if (other.gameObject.tag == "funnel" || other.gameObject.tag == "fa")
+        else if (other.gameObject.CompareTag("funnel") || other.gameObject.CompareTag("fa"))
         { }
         // else you are colliding with something else that is incorrect, reduce nozzle counter to "act like you are damaging the nozzle"
         else
