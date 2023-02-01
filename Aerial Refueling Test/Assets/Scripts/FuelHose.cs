@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FuelHose : MonoBehaviour
 {
+    /// <summary>
+    /// The boom arm movement script.
+    /// </summary>
     BoomArmMovement bam;
     private void Start()
     {
+        // get the boom arm movement script
         bam = transform.parent.GetComponent<BoomArmMovement>();
     }
 
+    /// <summary>
+    /// If the fuel hose is colliding with the C5 and not the fuel hole/funnel, add bad reward.
+    /// </summary>
     private void OnCollisionStay(Collision collision)
     {
         // if colliding with C5

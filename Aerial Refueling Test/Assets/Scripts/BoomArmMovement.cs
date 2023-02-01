@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -349,9 +348,9 @@ public class BoomArmMovement : Agent
 
         playerInput = GetComponent<PlayerInput>();
         // reading inputs from input device
-        moveAction = playerInput.actions["Move2"];
-        extendAction = playerInput.actions["Extend2"];
-        clampAction = playerInput.actions["Clamp2"];
+        moveAction = playerInput.actions["Move"];
+        extendAction = playerInput.actions["Extend"];
+        clampAction = playerInput.actions["Clamp"];
 
         moveActionController = playerInput.actions["Move1"];
         extendActionController = playerInput.actions["Extend1"];
