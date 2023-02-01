@@ -38,8 +38,7 @@
 ## About The Project
 This project simulates [aerial refueling][refuel-video] between C5 and KC-135 aircrafts.
 
-[![Real Refuel Image][refuel_im]](https://example.com)
-[![Simulated Refue Image][sim_im]](https://example.com)
+[![Real Refuel Image][refuel_im]]
 
 
 
