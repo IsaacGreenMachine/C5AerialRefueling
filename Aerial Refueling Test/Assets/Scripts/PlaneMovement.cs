@@ -363,6 +363,7 @@ public class PlaneMovement : MonoBehaviour
         {
             targetMode = true;
         }
+        // if playerC5 and no input mode is set, set keyboard mode
         else if (playerC5 && !keyboardMode && !joystickMode && !controllerMode)
         {
             keyboardMode = true;
@@ -451,7 +452,7 @@ public class PlaneMovement : MonoBehaviour
         // player-controlled
         else
         {
-            // controll with keyboard
+            // control with keyboard
             if (keyboardMode)
             {
                 // adding roll to torque vector
