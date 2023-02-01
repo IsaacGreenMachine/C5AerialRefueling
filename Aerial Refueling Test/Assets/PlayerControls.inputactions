@@ -9,25 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "97d1bb5c-8035-4fbd-839a-a630df139825",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Move1",
-                    "type": "Value",
-                    "id": "99887207-e3d3-43a4-9300-96867cd13484",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Move2",
-                    "type": "Value",
-                    "id": "12068b02-7449-4886-9fb6-e10d20db9e19",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -42,96 +24,46 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Extend1",
+                    "name": "Retract",
                     "type": "Button",
-                    "id": "16f7a92f-3f5a-406d-a9da-b5b471abf775",
+                    "id": "213a8ad5-9374-40d0-93a5-88b01141f4ed",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Extend2",
-                    "type": "Button",
-                    "id": "b4d2fc6d-6be5-4923-9ea5-e87f2fbe2b1d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Clamp",
-                    "type": "Button",
-                    "id": "38de7c9a-5de9-4d42-ab86-0817d5d9a95b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Clamp1",
-                    "type": "Button",
-                    "id": "8feee385-6f25-4ae3-a66e-9ae8721968a6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Clamp2",
-                    "type": "Button",
-                    "id": "27e7410c-f0b7-4538-bf8e-043d908bd573",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Thrust1",
-                    "type": "Button",
-                    "id": "3a842b94-5dc8-41f8-a3a7-6a20aa038cb9",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Thrust2",
-                    "type": "Button",
-                    "id": "a8b642b2-490b-40b3-b350-1301db592a03",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Yaw1",
-                    "type": "Value",
-                    "id": "4b26239e-9603-4061-aa7a-bee9170b8cb0",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Yaw2",
-                    "type": "Value",
-                    "id": "56ec4b10-fca6-4b21-8832-3bed8201cd2a",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "c146ef7b-3213-4c07-91fc-f8e9fdb75a2a",
-                    "path": "<HID::Logitech Extreme 3D pro>/stick",
+                    "path": "<HID::Thrustmaster T.16000M>/stick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17fc7d31-a451-42ef-9f12-9cb581e10452",
+                    "path": "<HID::Thrustmaster T.16000M>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Retract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db817d9a-62f0-4bb4-b05e-28cd704e9b17",
+                    "path": "<HID::Thrustmaster T.16000M>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Extend",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -149,7 +81,7 @@
                 {
                     "name": "negative",
                     "id": "817382ac-e3a5-49b5-8b41-f37b75d360d0",
-                    "path": "<HID::Logitech Extreme 3D pro>/hat/down",
+                    "path": "<HID::Thrustmaster T.16000M>/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -160,242 +92,11 @@
                 {
                     "name": "positive",
                     "id": "3657a6bc-29a2-479c-b83b-482ced779a12",
-                    "path": "<HID::Logitech Extreme 3D pro>/hat/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Extend",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "844274b8-642d-4ff7-8a3f-63ba93cab6a8",
-                    "path": "<DualShockGamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "73e5a01e-5727-4278-a3c5-605559280a5f",
-                    "path": "<HID::Logitech Extreme 3D pro>/trigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Clamp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "cdf23ba2-ea2e-4c31-9a4a-230a6b280702",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Extend1",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "44627dde-bd58-4585-b4a9-0cf2e8141f23",
-                    "path": "<DualShockGamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Extend1",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "ddc5293e-97b8-4ceb-97ff-5a26ede66fd3",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Extend1",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "aec1831d-d968-46c0-838c-e2cf80c959ec",
-                    "path": "<DualShockGamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Clamp1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "483bd6bd-2482-404d-b0ce-6fc7ab2fa536",
-                    "path": "<HID::Thrustmaster T.16000M>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "eeae0c43-3144-4c09-8692-132de7b7bc22",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Thrust1",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "110727ce-3f1b-4d49-a0b4-980003ceb7d8",
-                    "path": "<DualShockGamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Thrust1",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "89bdb608-f7ba-4199-816d-ff1e017c0603",
-                    "path": "<DualShockGamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Thrust1",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "0d038c1a-dec2-44c8-aed6-2facfd8bbf69",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Thrust2",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "35340f87-11b1-4440-804e-bea61cb82bfc",
-                    "path": "<HID::Thrustmaster T.16000M>/hat/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Thrust2",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "db49c994-274c-45af-9038-9a103f76bd34",
-                    "path": "<HID::Thrustmaster T.16000M>/hat/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Thrust2",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "797cd020-aa86-432f-90ea-279463926501",
-                    "path": "<HID::Thrustmaster T.16000M>/rz",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "bf7dfc0b-d3ba-404b-bdf6-ccd7bbd4a5d2",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw1",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "18673931-5cf9-47d8-a0d1-2dc18663797d",
-                    "path": "<DualShockGamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw1",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "81df3a0d-8f16-4f00-8faa-194b7ee02a82",
-                    "path": "<DualShockGamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Yaw1",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "1cc22e2b-b9a2-4ee7-b80f-49326d5e653d",
                     "path": "<HID::Thrustmaster T.16000M>/trigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Clamp2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "6fbd0fe5-b7f1-44fa-90d6-479c370c7ddb",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Extend2",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "03b1aa86-7c29-4120-b68f-9da21af316f2",
-                    "path": "<HID::Thrustmaster T.16000M>/hat/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Extend2",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "14e4e2ac-9149-4dc1-879d-cf14ffcd7e2b",
-                    "path": "<HID::Thrustmaster T.16000M>/hat/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Extend2",
+                    "action": "Extend",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

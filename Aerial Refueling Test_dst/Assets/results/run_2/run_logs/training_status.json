@@ -1,0 +1,65 @@
+{
+    "RefuelArm": {
+        "checkpoints": [
+            {
+                "steps": 3499980,
+                "file_path": "results/run_2/RefuelArm/RefuelArm-3499980.onnx",
+                "reward": null,
+                "creation_time": 1672169049.0132961,
+                "auxillary_file_paths": [
+                    "results/run_2/RefuelArm/RefuelArm-3499980.pt"
+                ]
+            },
+            {
+                "steps": 3999956,
+                "file_path": "results/run_2/RefuelArm/RefuelArm-3999956.onnx",
+                "reward": null,
+                "creation_time": 1672169520.2043352,
+                "auxillary_file_paths": [
+                    "results/run_2/RefuelArm/RefuelArm-3999956.pt"
+                ]
+            },
+            {
+                "steps": 4499932,
+                "file_path": "results/run_2/RefuelArm/RefuelArm-4499932.onnx",
+                "reward": 126.97722387049969,
+                "creation_time": 1672169985.699274,
+                "auxillary_file_paths": [
+                    "results/run_2/RefuelArm/RefuelArm-4499932.pt"
+                ]
+            },
+            {
+                "steps": 4999956,
+                "file_path": "results/run_2/RefuelArm/RefuelArm-4999956.onnx",
+                "reward": 27.142175341024995,
+                "creation_time": 1672170455.538281,
+                "auxillary_file_paths": [
+                    "results/run_2/RefuelArm/RefuelArm-4999956.pt"
+                ]
+            },
+            {
+                "steps": 5000292,
+                "file_path": "results/run_2/RefuelArm/RefuelArm-5000292.onnx",
+                "reward": 31.02872470393777,
+                "creation_time": 1672170455.745271,
+                "auxillary_file_paths": [
+                    "results/run_2/RefuelArm/RefuelArm-5000292.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000292,
+            "file_path": "results/run_2/RefuelArm.onnx",
+            "reward": 31.02872470393777,
+            "creation_time": 1672170455.745271,
+            "auxillary_file_paths": [
+                "results/run_2/RefuelArm/RefuelArm-5000292.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.11.0"
+    }
+}
