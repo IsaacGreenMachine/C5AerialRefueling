@@ -190,8 +190,8 @@ Project Link: [https://github.com/IsaacGreenMachine/C5AerialRefueling](https://g
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [isaac-linkedin-url]: https://linkedin.com/in/-isaacgreen-
 [lyndon-linkedin-url]: https://linkedin.com/in/lyndonpettersson
-[refuel_im]: images/screenshot0.png
-[sim_im]: images/screenshot1.png
+[refuel_im]: images_dst/screenshot0.png
+[sim_im]: images_dst/screenshot1.png
 [Python]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=green
 [Unity]: https://img.shields.io/badge/unity-000000?style=for-the-badge&logo=unity&logoColor=white
 [MLAgents]: https://img.shields.io/badge/ml%20agents-000000?style=for-the-badge&logo=unity&logoColor=white
