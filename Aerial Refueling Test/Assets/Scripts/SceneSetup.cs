@@ -6,10 +6,16 @@ using UnityEngine.UI;
 
 public class SceneSetup : MonoBehaviour
 {
+    /// <summary>
+    /// The booleans for the player selection.
+    /// </summary>
     public Boolean playerC5;
     public Boolean playerKC135;
     public Boolean playerBoomArm;
-    
+
+    /// <summary>
+    /// The booleans for the input selection, based on player selection.
+    /// </summary>
     public Boolean inputJoystickC5;
     public Boolean inputKeyboardC5;
     public Boolean inputControllerC5;
@@ -22,10 +28,16 @@ public class SceneSetup : MonoBehaviour
     public Boolean inputKeyboardBoomArm;
     public Boolean inputControllerBoomArm;
     
+    /// <summary>
+    /// GameObjects for toggling the selection of the player within the settings page.
+    /// </summary>
     public GameObject playerC5GO;
     public GameObject playerKC135GO;
     public GameObject playerBoomArmGO;
 
+    /// <summary>
+    /// GameObjects for toggling the selection of input based on player selection.
+    /// </summary>
     public GameObject joystickGreenC5;
     public GameObject keyboardGreenC5;
     public GameObject controllerGreenC5;
@@ -38,19 +50,31 @@ public class SceneSetup : MonoBehaviour
     public GameObject keyboardGreenBoomArm;
     public GameObject controllerGreenBoomArm;
 
+    /// <summary>
+    /// GameObject for toggling the selection of fog and VC.
+    /// </summary>
     public GameObject fogGO;
     public GameObject volumetricCloudsGO;
 
-    public Toggle volumetricClouds;
-    public Toggle fog;
+    /// <summary>
+    /// The time of day slider
+    /// </summary>
     public Slider TimeOfDay;
     public GameObject slider;
 
+    /// <summary>
+    /// Booleans to be able to store fog and VC settings into PlayerPrefs.
+    /// </summary>
     public Boolean volumetricCloudsBool;
     public Boolean fogBool;
+    /// <summary>
+    /// Float for storing time of day in PlayerPrefs
+    /// </summary>
     public float timeOfDayFloat;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Helper function to convert int to bool, PlayerPrefs only stores ints and strings
+    /// </summary>
     bool intToBool(int val)
     {
         if (val != 0)
@@ -58,8 +82,11 @@ public class SceneSetup : MonoBehaviour
         else
             return false;
     }
+
+    // Start is called before the first frame update
     void Start()
     {
+        // Grab all of the values from PlayerPrefs to load the chosen settings
         playerC5 = intToBool(PlayerPrefs.GetInt("playerC5"));
         playerKC135 = intToBool(PlayerPrefs.GetInt("playerKC135"));
         playerBoomArm = intToBool(PlayerPrefs.GetInt("playerBoomArm"));
@@ -80,6 +107,7 @@ public class SceneSetup : MonoBehaviour
         fogBool = intToBool(PlayerPrefs.GetInt("fogBool"));
         timeOfDayFloat = PlayerPrefs.GetInt("TimeOfDay");
 
+        // If we have previously selected settings, set them based on PlayerPrefs
         if (playerC5)
         {
             playerC5GO.SetActive(true);
@@ -101,6 +129,8 @@ public class SceneSetup : MonoBehaviour
                 keyboardGreenC5.SetActive(true);
             }
         }
+
+        // If we have previously selected settings, set them based on PlayerPrefs
         if (playerKC135)
         {
             playerKC135GO.SetActive(true);
@@ -122,6 +152,8 @@ public class SceneSetup : MonoBehaviour
                 keyboardGreenKC135.SetActive(true);
             }
         }
+
+        // If we have previously selected settings, set them based on PlayerPrefs
         if (playerBoomArm)
         {
             playerBoomArmGO.SetActive(true);
@@ -143,30 +175,40 @@ public class SceneSetup : MonoBehaviour
                 keyboardGreenBoomArm.SetActive(true);
             }
         }
+
+        // If we have previously selected settings, set them based on PlayerPrefs
         if (volumetricCloudsBool)
         {
             volumetricCloudsGO.SetActive(true);
         }
+        // If we have previously selected settings, set them based on PlayerPrefs
         if (fogBool)
         {
             fogGO.SetActive(true);
         }
+        // Sets the slider based on PlayerPrefs
         slider.GetComponent<Slider>().value = timeOfDayFloat;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // updates the timeOfDayFloat based on the slider, needs to be checked every frame, hence why it's in update
         timeOfDayFloat = slider.GetComponent<Slider>().value;
     }
 
+    /// <summary>
+    /// Toggles whether the C5 is Player or AI controlled
+    /// </summary>
     public void SetPlayerC5()
     {
+        // c5 is false and we click to toggle, turn it on
         if (playerC5 == false)
         {
             playerC5 = true;
             playerC5GO.SetActive(true);
         }
+        // if c5 is selected, clear the player inputs and toggle off the c5
         else
         {
             playerC5 = false;
@@ -182,13 +224,18 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggles whether the KC135 is Player or AI controlled
+    /// </summary>
     public void SetPlayerKC135()
     {
+        // kc135 is false and we click to toggle, turn it on
         if (playerKC135 == false)
         {
             playerKC135 = true;
             playerKC135GO.SetActive(true);
         }
+        // if kc135 is selected, clear the player inputs and toggle off the kc135
         else
         {
             playerKC135 = false;
@@ -205,13 +252,18 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggles whether the BoomArm is Player or AI controlled
+    /// </summary>
     public void SetPlayerBoomArm()
     {
+        // boomArm is false and we click to toggle, turn it on
         if (playerBoomArm == false)
         {
             playerBoomArm = true;
             playerBoomArmGO.SetActive(true);
         }
+        // if boomArm is selected, clear the player inputs and toggle off the c5
         else
         {
             playerBoomArm = false;
@@ -227,10 +279,15 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows toggle of C5 Joystick control
+    /// </summary>
     public void SetC5InputJoystick()
     {
+        // make sure c5 is player controlled
         if (playerC5)
         {
+            // joystick is selected, clear all other inputs and select joystick
             if (inputJoystickC5 == false)
             {
                 inputControllerC5 = false;
@@ -253,10 +310,15 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows toggle of C5 Keyboard control
+    /// </summary>
     public void SetC5InputKeyboard()
     {
+        // make sure c5 is player controlled
         if (playerC5)
         {
+            // keyboard is selected, clear all other inputs and select keyboard
             if (inputKeyboardC5 == false)
             {
                 inputControllerC5 = false;
@@ -278,10 +340,15 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows toggle of C5 Controller control
+    /// </summary>
     public void SetC5InputController()
     {
+        // make sure c5 is player controlled
         if (playerC5)
         {
+            // controller is selected, clear all other inputs and select controller
             if (inputControllerC5 == false)
             {
                 inputJoystickC5 = false;
@@ -303,10 +370,15 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows toggle of KC135 Joystick control
+    /// </summary>
     public void SetKC135InputJoystick()
     {
+        // make sure kc135 is player controlled
         if (playerKC135)
         {
+            // joystick is selected, clear all other inputs and select joystick
             if (inputJoystickKC135 == false)
             {
                 inputControllerKC135 = false;
@@ -329,10 +401,15 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows toggle of KC135 Keyboard control
+    /// </summary>
     public void SetKC135InputKeyboard()
     {
+        // make sure kc135 is player controlled
         if (playerKC135)
         {
+            // keyboard is selected, clear all other inputs and select keyboard
             if (inputKeyboardKC135 == false)
             {
                 inputControllerKC135 = false;
@@ -355,10 +432,15 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows toggle of KC135 Controller control
+    /// </summary>
     public void SetKC135InputController()
     {
+        // make sure kc135 is player controlled
         if (playerKC135)
         {
+            // controller is selected, clear all other inputs and select controller
             if (inputControllerKC135 == false)
             {
                 inputControllerKC135 = true;
@@ -381,10 +463,15 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows toggle of BoomArm Joystick control
+    /// </summary>
     public void SetBoomArmInputJoystick()
     {
+        // make sure BoomArm is player controlled
         if (playerBoomArm)
         {
+            // joystick is selected, clear all other inputs and select joystick
             if (inputJoystickBoomArm == false)
             {
                 inputControllerBoomArm = false;
@@ -403,10 +490,15 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows toggle of BoomArm Keyboard control
+    /// </summary>
     public void SetBoomArmInputKeyboard()
     {
+        // make sure BoomArm is player controlled
         if (playerBoomArm)
         {
+            // keyboard is selected, clear all other inputs and select keyboard
             if (inputKeyboardBoomArm == false)
             {
                 inputControllerBoomArm = false;
@@ -425,10 +517,15 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows toggle of BoomArm Controller control
+    /// </summary>
     public void SetBoomArmInputController()
     {
+        // make sure BoomArm is player controlled
         if (playerBoomArm)
         {
+            // controller is selected, clear all other inputs and select controller
             if (inputControllerBoomArm == false)
             {
                 inputControllerBoomArm = true;
@@ -447,6 +544,9 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggle for turning volumetric clouds on/off
+    /// </summary>
     public void SetVolumetricClouds()
     {
         if (volumetricCloudsBool == false)
@@ -461,6 +561,9 @@ public class SceneSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggle for turning fog on/off
+    /// </summary>
     public void SetFog()
     {
         if (fogBool == false)
@@ -475,6 +578,9 @@ public class SceneSetup : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Helper function to turn bools to int (PlayerPrefs does not allow storage of bools)
+    /// </summary>
     int boolToInt(bool val)
     {
         if (val)
@@ -483,9 +589,12 @@ public class SceneSetup : MonoBehaviour
             return 0;
     }
 
+    /// <summary>
+    /// When the settings page is closed, send the true/false values and ToD float to PlayerPrefs to store
+    /// </summary>
     private void OnDisable()
     {
-        
+        // Set int in Player prefs, as this name, using our helper function on the Booleans we created to track our toggles
         PlayerPrefs.SetInt("playerC5", boolToInt(playerC5));
         PlayerPrefs.SetInt("playerKC135", boolToInt(playerKC135));
         PlayerPrefs.SetInt("playerBoomArm", boolToInt(playerBoomArm));
