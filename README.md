@@ -302,7 +302,7 @@ Once the project is open in the Unity Editor, you can go ahead and start the sim
 
 - Navigate to the Scenes folder in your Assets Menu and ***double click*** the scene “Main Menu”.
     
-    ![123.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/123.png)
+    ![123.png](/images/SceneSelect.png)
     
 - After clicking the scene, you will be on the Main Menu screen. Then, ***you must press the play button*** at the top of the editor, to start the sim.
     
