@@ -57,7 +57,8 @@ This project simulates [aerial refueling][refuel-video] between C5 and KC-135 ai
 
 
 ## Running the Demo
-Run the ![build rar file][buildrar] Build.rar file on your machine or open the ![unity project folder][unityproj]"Aerial Refueling Test" Folder in Unity Hub.
+Run the [Build.rar](https://github.com/IsaacGreenMachine/C5AerialRefueling/blob/main/Build.rar) file on your machine or open the [Aerial Refueling Test](https://github.com/IsaacGreenMachine/C5AerialRefueling/tree/main/Aerial%20Refueling%20Test) Folder in [Unity Hub](https://unity.com/download).
+
 
 
 
@@ -709,8 +710,6 @@ Project Link: [https://github.com/IsaacGreenMachine/C5AerialRefueling](https://g
 [lyndon-linkedin-url]: https://linkedin.com/in/lyndonpettersson
 [refuel_im]: images/screenshot0.png
 [sim_im]: images/screenshot1.png
-[buildrar]: Build.rar
-[unityproj]: /Aerial Refueling Test
 
 [Python]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=green
 [Unity]: https://img.shields.io/badge/unity-000000?style=for-the-badge&logo=unity&logoColor=white
