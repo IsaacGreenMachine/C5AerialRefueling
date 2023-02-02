@@ -465,7 +465,7 @@ The Model’s inputs are:
 
 - [0-29] 5 [Ray Perception Sensors](https://docs.unity3d.com/Packages/com.unity.ml-agents@1.0/api/Unity.MLAgents.Sensors.RayPerceptionSensorComponent3D.html) that are cast from the nozzle.
     
-    ![Screen Shot 2023-01-30 at 4.33.17 PM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-30_at_4.33.17_PM.png)
+    ![Screen Shot 2023-01-30 at 4.33.17 PM.png](/images/RayPerceptionSensors.png)
     
     - Each Ray Perception Sensor provides 6 inputs, for a total of 30 values.
     - Inputs are:
@@ -478,7 +478,7 @@ The Model’s inputs are:
 - [30] The distance from the nozzle of the boom arm to the C5’s fuel hole (meters) (float)
 - [31, 32] the arm pitch and roll angular differences (degrees) (float)
     
-    ![Screen Shot 2023-01-30 at 4.21.02 PM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-30_at_4.21.02_PM.png)
+    ![Screen Shot 2023-01-30 at 4.21.02 PM.png](/images/optimalAngleDiagram.png)
     
     - Vector 1 (current) from Rotation Point to Nozzle Tip
     - Vector 2 (ideal) from Rotation Point to fuel hole
