@@ -39,8 +39,6 @@ This project simulates [aerial refueling][refuel-video] between C5 and KC-135 ai
 
 ![Real Refuel Image][refuel_im]
 
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -57,6 +55,13 @@ This project simulates [aerial refueling][refuel-video] between C5 and KC-135 ai
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+
+## Running the Demo
+Run the ![build rar file][buildrar] Build.rar file on your machine or open the ![unity project folder][unityproj]"Aerial Refueling Test" Folder in Unity Hub.
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # CymStar Unity R&D Writeup
 
@@ -704,6 +709,9 @@ Project Link: [https://github.com/IsaacGreenMachine/C5AerialRefueling](https://g
 [lyndon-linkedin-url]: https://linkedin.com/in/lyndonpettersson
 [refuel_im]: images/screenshot0.png
 [sim_im]: images/screenshot1.png
+[buildrar]: Build.rar
+[unityproj]: /Aerial Refueling Test
+
 [Python]: https://img.shields.io/badge/python-000000?style=for-the-badge&logo=python&logoColor=green
 [Unity]: https://img.shields.io/badge/unity-000000?style=for-the-badge&logo=unity&logoColor=white
 [MLAgents]: https://img.shields.io/badge/ml%20agents-000000?style=for-the-badge&logo=unity&logoColor=white
@@ -713,3 +721,4 @@ Project Link: [https://github.com/IsaacGreenMachine/C5AerialRefueling](https://g
 [mla-url]: https://unity.com/products/machine-learning-agents
 [pytorch-url]: https://pytorch.org
 [refuel-video]: https://youtu.be/YPaLbtRKyTA
+
