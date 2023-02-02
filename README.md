@@ -454,7 +454,7 @@ Select “Inner_Hose” in RealInstance > KC135 > Outer_Boom > Inner_Hose. In th
 ![Screen Shot 2023-01-31 at 10.58.20 AM.png](/images/HoseAB.png)
 
 ## 👷 Architecture
-For questions on simulation Architecture, please refer to our presentation (linked above)
+For questions on simulation Architecture, please refer to our [presentation](https://drive.google.com/file/d/1jbaDxlbrAM4Cz4LUJlsFwuOSOKwQyM-C/view?t=28m31s)
 
 ## 🧠 Neural Network Usage & Further Training
 
