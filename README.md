@@ -306,7 +306,7 @@ Once the project is open in the Unity Editor, you can go ahead and start the sim
     
 - After clicking the scene, you will be on the Main Menu screen. Then, ***you must press the play button*** at the top of the editor, to start the sim.
     
-    ![safasfasf.PNG](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/safasfasf.png)
+    ![safasfasf.PNG](/images/TitleScreen.png)
     
     From the Main Menu, you can choose to start the simulation by hitting the Start button. **(Visit the Settings page first, this is where you will select what you want to control.)**
     
@@ -315,26 +315,26 @@ Once the project is open in the Unity Editor, you can go ahead and start the sim
 
 - Each tab has corresponding button layouts based on your input device.
     
-    ![joystick.PNG](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/joystick.png)
+    ![joystick.PNG](/images/joystick.png)
     
 
 ### Settings Menu:
 
 - The first time you enter the settings menu, no values will be selected.
     
-    ![setting.PNG](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/setting.png)
+    ![setting.PNG](/images/setting.png)
     
 - On the left side, you can select whether you want to control the C5, the KC135, and/or the Boom Arm. **(If left unselected, they will default to being controlled by AI)**
     
-    ![123123.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/123123.png)
+    ![123123.png](/images/ControlsSelect1.png)
     
 - Once you have selected which planes you’d like to control, you can select the input for whichever input device you are using. **(If left blank, it will default to keyboard)**
     
-    ![12312312123.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/12312312123.png)
+    ![12312312123.png](/images/ControlsSelect2.png)
     
 - You can toggle on and off Volumetric Clouds and/or fog, depending on system requirements. As well as change the time of day with the slider.
     
-    ![safasfas.PNG](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/safasfas.png)
+    ![safasfas.PNG](/images/ControlsSelect3.PNG.png)
     
 - The values will be saved when you exit the settings menu (saved in PlayerPrefs). Upon return, the settings will be taken from PlayerPrefs (A class that stores Player preferences between game sessions) and will reload the settings you have chosen.
 
