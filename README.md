@@ -14,13 +14,23 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+	<li><a href="#Running-the-Demo">Running the Demo</a></li>
       </ul>
     </li>
     <li>
-      <a href="#Running-the-Demo">Running the Demo</a>
+      <a href="#CymStar-Unity-R&D-Writeup">CymStar Unity R&D Writeup</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#useful-stuff-for-building-physics-sims-in-Unity">useful stuff for building physics sims in Unity</a></li>
+        <li><a href="#documentation-for-the-sim-we-built">documentation for the sim we built</a></li>
+	      <ul>
+		<li><a href="#Play-Guide">Play Guide</a></li>
+		<li><a href="#Tweaking-Values">Tweaking Values</a></li>
+		<li><a href="#Architecture">Architecture</a></li>
+		<li><a href="#Neural-Network-Usage-&-Further-Training">Neural Network Usage & Further Training</a></li>
+		      
+	      </ul>      
+
+
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
