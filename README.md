@@ -88,7 +88,7 @@ This allows you to create and manage Unity projects and versions with a visual i
 
 ## the editor
 
-![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%201.png)
+![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1eebb0d5-33a5-42b9-b24f-889d2b6e8034/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031312Z&X-Amz-Expires=86400&X-Amz-Signature=65c59017536ecde10c41606eb532ef354e9763d06993190cadc9236e341048f0&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
 
 You’ll spend a lot of time looking at this screen: it’s the editor.
 
@@ -115,11 +115,11 @@ Everything in Unity is either an Asset or a Component.
 
 When GameObjects are created, they come with a “transform” Component. This is how Unity keeps track of its position, rotation, and scale. 
 
-![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%202.png)
+![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e0feea48-2224-4814-9499-ca6e15232fe4/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031410Z&X-Amz-Expires=86400&X-Amz-Signature=6e01c389c045fc863c3f60a71321e8c91fdab9ced50d30a601aa8a8b6638e1db&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
 
 GameObjects can be nested, which helps group them together. It also locks their positions together (if a parent moves 10 units on the x axis, so will all its children)
 
-![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%203.png)
+![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a40e26fc-e96f-45ac-94b4-3da6bb730713/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031432Z&X-Amz-Expires=86400&X-Amz-Signature=4587188cf51b53f62643bf3b6b8a5b93947aebc741b2bc6fdec857689ce343df&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
 
 ## accessing stuff using scripts
 
@@ -217,7 +217,7 @@ Physics-based movement implements Unity’s built-in physics system. You will ne
 
 ### [Rigidbodies](https://docs.unity3d.com/ScriptReference/Rigidbody.html)
 
-![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%204.png)
+![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e9858b92-4219-4c86-8d67-3047aa8e660b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031602Z&X-Amz-Expires=86400&X-Amz-Signature=7e3f957a66097dd85f7363151b7da8efcf19271d4b3fc5c3256b830d80946bdd&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
 
 the rigidbody component is what allows you to add forces to and control physic properties of GameObjects. 
 
@@ -227,7 +227,7 @@ Rigidbodies come with gravity (toggle-able), linear and angular velocity, differ
 
 ### [Colliders](https://docs.unity3d.com/ScriptReference/Collider.html)
 
-![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%205.png)
+![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6bd47a07-d454-4b70-8dda-6251334c425b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031638Z&X-Amz-Expires=86400&X-Amz-Signature=5ece841ab4a898afac3e5a65548ee63276dbbf45f7573c6c207bd51a220518ab&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
 
 collider components allow you to define a rigidbody’s shape, and control how it will interact with other colliders. Any colliders that are within a parent/child group (no matter the depth of nesting) with a rigid body will be used for that rigid body’s collisions.
 
@@ -249,7 +249,7 @@ Joints connect two rigidbodies depending on the type of joint.
 
 ### [**ArticulatedBodies**](https://www.google.com/search?client=safari&rls=en&q=Unity+Articulated+bodes&ie=UTF-8&oe=UTF-8)
 
-![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%206.png)
+![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8a75eb52-5ebf-4537-9aab-ecbadd0b4272/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031708Z&X-Amz-Expires=86400&X-Amz-Signature=188984709ed171b546b5906603dfc73bb53df046eb8d70a4331500b167748e1b&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
 
 ArticulatedBodies are a unity component that enable complex mechanical behavior like robotic arms and articulated joints.
 
