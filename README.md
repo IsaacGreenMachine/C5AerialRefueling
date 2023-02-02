@@ -20,7 +20,7 @@
     <li>
       <a href="#CymStar-Unity-RnD-Writeup">CymStar Unity R&D Writeup</a>
       <ul>
-        <li><a href="#useful-stuff-for-building-physics-sims-in-Unity">useful stuff for building physics sims in Unity</a></li>
+        <li><a href="#💬-useful-stuff-for-building-physics-sims-in-Unity">useful stuff for building physics sims in Unity</a></li>
         <li><a href="#documentation-for-the-sim-we-built">documentation for the sim we built</a></li>
 	      <ul>
 		<li><a href="#Play-Guide">Play Guide</a></li>
