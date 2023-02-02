@@ -82,7 +82,7 @@ I’ll cover the basics, but a good way to get up and going in Unity is to check
 
 ## setup
 
-to get unity running on your machine, you’ll likely use the [Unity Hub](https://docs.unity3d.com/2019.1/Documentation/uploads/Main/gs_hub_installs_screen2.png).
+to get unity running on your machine, you’ll likely use the Unity Hub. ![Untitled](https://docs.unity3d.com/2019.1/Documentation/uploads/Main/gs_hub_installs_screen2.png).
 
 ![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled.png)
 
