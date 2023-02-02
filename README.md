@@ -351,7 +351,7 @@ We built much of the sim to be tweak-able without touching code.
 
 Select “c5” in RealInstance > c5. In the Inspector, the “Plane Movement” Script has many values
 
-![Screen Shot 2023-01-31 at 10.34.30 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.34.30_AM.png)
+![Screen Shot 2023-01-31 at 10.34.30 AM.png](/images/PlaneMovement.png)
 
 Roll Speed: the speed at which the plane rolls
 
@@ -375,7 +375,7 @@ LR Speed: how much the aircraft moves to its left/right when rolling
 
 Select “c5” in RealInstance > c5. In the Inspector, the “RigidBody” Component has settings for mass.
 
-![Screen Shot 2023-01-31 at 10.50.26 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.50.26_AM.png)
+![Screen Shot 2023-01-31 at 10.50.26 AM.png](/images/Rigidbody.png)
 
 ### ✈️ To tweak the KC135:
 
@@ -383,7 +383,7 @@ Select “c5” in RealInstance > c5. In the Inspector, the “RigidBody” Comp
 
 Select “KC135” in RealInstance > KC135. In the Inspector, the “Plane Movement Articulation body” Script has many values
 
-![Screen Shot 2023-01-31 at 10.42.05 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.42.05_AM.png)
+![Screen Shot 2023-01-31 at 10.42.05 AM.png](/images/PlaneMovementAB.png)
 
 Roll Speed: the speed at which the plane rolls
 
@@ -401,7 +401,7 @@ LR Speed: how much the aircraft moves to its left/right when rolling
 
 Select “KC135” in RealInstance > KC135. In the Inspector, the “Articulation Body” Component has settings for mass.
 
-![Screen Shot 2023-01-31 at 10.52.10 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.52.10_AM.png)
+![Screen Shot 2023-01-31 at 10.52.10 AM.png](/images/AB.png)
 
 ### 🦾 To tweak the Boom Arm:
 
@@ -409,7 +409,7 @@ Select “KC135” in RealInstance > KC135. In the Inspector, the “Articulatio
 
 Select “Outer_Boom” in RealInstance > KC135 > Outer_Boom. In the Inspector, the “Boom Arm Movement” Script has many values
 
-![Screen Shot 2023-01-31 at 2.25.03 PM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_2.25.03_PM.png)
+![Screen Shot 2023-01-31 at 2.25.03 PM.png](/images/BAM.png)
 
 Roll Change Speed : how quickly the arm will roll
 
@@ -437,13 +437,13 @@ Fuel Rate : how quickly fuel passes from the KC135 to the C5
 
 Select “Outer_Boom” in RealInstance > KC135 > Outer_Boom. In the Inspector, the “Articulation Body” Component has mass options
 
-![Screen Shot 2023-01-31 at 10.55.54 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.55.54_AM.png)
+![Screen Shot 2023-01-31 at 10.55.54 AM.png](/images/ArmAB.png)
 
 ********************Fuel Hose:********************
 
 Select “Inner_Hose” in RealInstance > KC135 > Outer_Boom > Inner_Hose. In the Inspector, the “Articulation Body” Component has mass options
 
-![Screen Shot 2023-01-31 at 10.58.20 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.58.20_AM.png)
+![Screen Shot 2023-01-31 at 10.58.20 AM.png](/images/HoseAB.png)
 
 ## 👷 Architecture
 
