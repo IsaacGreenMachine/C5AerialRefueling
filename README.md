@@ -306,7 +306,7 @@ Once the project is open in the Unity Editor, you can go ahead and start the sim
     
 - After clicking the scene, you will be on the Main Menu screen. Then, ***you must press the play button*** at the top of the editor, to start the sim.
     
-    ![safasfasf.PNG](/images/TitleScreen.png)
+    ![safasfasf.PNG](/images/TitleScreen.PNG.png)
     
     From the Main Menu, you can choose to start the simulation by hitting the Start button. **(Visit the Settings page first, this is where you will select what you want to control.)**
     
@@ -315,7 +315,7 @@ Once the project is open in the Unity Editor, you can go ahead and start the sim
 
 - Each tab has corresponding button layouts based on your input device.
     
-    ![joystick.PNG](/images/joystick.png)
+    ![joystick.PNG](/images/joystick.PNG.png)
     
 
 ### Settings Menu:
@@ -624,7 +624,7 @@ To increase training speed, ML-Agents has implemented the ability for Agents to 
 
 Something like this:
 
-![Screen Shot 2023-01-31 at 9.50.45 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_9.50.45_AM.png)
+![Screen Shot 2023-01-31 at 9.50.45 AM.png](/images/MultiInstances.png)
 
 For best results, we found that **16 instances** in a square formation (4x4) works best. Each instance is separated by 200 meters on the x or z axis, and has the Sketchfab models for the C5, KC135, and Boom Arm disabled to save rendering memory.
 
