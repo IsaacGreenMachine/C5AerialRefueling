@@ -335,7 +335,7 @@ Getting OpenFlight models working in Unity is slightly tricky. At them moment, U
 1. **Next, we need to install the tool for pulling the model into Unity, which is down through Sketchbook.**
 - First, we need to get the API for Sketchfab attached to Unity. To do this, you can just go to this [GitHub link](https://github.com/sketchfab/unity-plugin/releases/tag/1.2.2) and install the Unity package.
     
-    ![Screenshot 2023-02-03 113047.jpg](/images/Screenshot13047.jpg)
+    ![Screenshot 2023-02-03 113047.jpg](/images/Screenshot113047.jpg)
     
 - Once downloaded and we double-click the package, it will open the package in Unity and ask about import settings, import all packages:
     
