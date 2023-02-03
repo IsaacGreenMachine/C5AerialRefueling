@@ -73,7 +73,7 @@ Run the [Build.rar](https://github.com/IsaacGreenMachine/C5AerialRefueling/blob/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# CymStar Unity RnD Writeup
+# CymStar Unity R&D Writeup
 
 Hello, CymStar! 
 
@@ -91,13 +91,15 @@ I’ll cover the basics, but a good way to get up and going in Unity is to check
 
 ## setup
 
-to get unity running on your machine, you’ll likely use the [Unity Hub](https://unity.com/download). ![Untitled](https://docs.unity3d.com/2019.1/Documentation/uploads/Main/gs_hub_installs_screen2.png).
+to get unity running on your machine, you’ll likely use the [Unity Hub](https://unity.com/download).
+
+![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled.png)
 
 This allows you to create and manage Unity projects and versions with a visual interface. If you have our project downloaded on your machine, you should be able to open in with this tool.
 
 ## the editor
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1eebb0d5-33a5-42b9-b24f-889d2b6e8034/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031312Z&X-Amz-Expires=86400&X-Amz-Signature=65c59017536ecde10c41606eb532ef354e9763d06993190cadc9236e341048f0&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%201.png)
 
 You’ll spend a lot of time looking at this screen: it’s the editor.
 
@@ -124,11 +126,11 @@ Everything in Unity is either an Asset or a Component.
 
 When GameObjects are created, they come with a “transform” Component. This is how Unity keeps track of its position, rotation, and scale. 
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e0feea48-2224-4814-9499-ca6e15232fe4/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031410Z&X-Amz-Expires=86400&X-Amz-Signature=6e01c389c045fc863c3f60a71321e8c91fdab9ced50d30a601aa8a8b6638e1db&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%202.png)
 
 GameObjects can be nested, which helps group them together. It also locks their positions together (if a parent moves 10 units on the x axis, so will all its children)
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a40e26fc-e96f-45ac-94b4-3da6bb730713/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031432Z&X-Amz-Expires=86400&X-Amz-Signature=4587188cf51b53f62643bf3b6b8a5b93947aebc741b2bc6fdec857689ce343df&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%203.png)
 
 ## accessing stuff using scripts
 
@@ -226,7 +228,7 @@ Physics-based movement implements Unity’s built-in physics system. You will ne
 
 ### [Rigidbodies](https://docs.unity3d.com/ScriptReference/Rigidbody.html)
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e9858b92-4219-4c86-8d67-3047aa8e660b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031602Z&X-Amz-Expires=86400&X-Amz-Signature=7e3f957a66097dd85f7363151b7da8efcf19271d4b3fc5c3256b830d80946bdd&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%204.png)
 
 the rigidbody component is what allows you to add forces to and control physic properties of GameObjects. 
 
@@ -236,7 +238,7 @@ Rigidbodies come with gravity (toggle-able), linear and angular velocity, differ
 
 ### [Colliders](https://docs.unity3d.com/ScriptReference/Collider.html)
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6bd47a07-d454-4b70-8dda-6251334c425b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031638Z&X-Amz-Expires=86400&X-Amz-Signature=5ece841ab4a898afac3e5a65548ee63276dbbf45f7573c6c207bd51a220518ab&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%205.png)
 
 collider components allow you to define a rigidbody’s shape, and control how it will interact with other colliders. Any colliders that are within a parent/child group (no matter the depth of nesting) with a rigid body will be used for that rigid body’s collisions.
 
@@ -258,7 +260,7 @@ Joints connect two rigidbodies depending on the type of joint.
 
 ### [**ArticulatedBodies**](https://www.google.com/search?client=safari&rls=en&q=Unity+Articulated+bodes&ie=UTF-8&oe=UTF-8)
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8a75eb52-5ebf-4537-9aab-ecbadd0b4272/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031708Z&X-Amz-Expires=86400&X-Amz-Signature=188984709ed171b546b5906603dfc73bb53df046eb8d70a4331500b167748e1b&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%206.png)
 
 ArticulatedBodies are a unity component that enable complex mechanical behavior like robotic arms and articulated joints.
 
@@ -289,6 +291,83 @@ A GameObject’s scale will affect all its children. It is best practice to crea
 
 [mesh colliders](https://docs.unity3d.com/Manual/class-MeshCollider.html) are a very tempting way to handle collisions. They don’t work most of the time, though. They are worth a try, and worth a try again with the “convex” option enabled, but it is best to use box / capsule / sphere colliders when possible.
 
+## Importing OpenFlight models into Unity
+
+Getting OpenFlight models working in Unity is slightly tricky. At them moment, Unity only allows .fbx or .obj files, which are NOT OpenFlight models. Let’s talk about the steps that were taken to achieve this.
+
+1. **We need to convert the OpenFlight into .fbx format.**
+- The best way to do this is to use **3ds Max** from AutoDesk. You can install it from this link: [https://www.autodesk.com/products/3ds-max/free-trial](https://www.autodesk.com/products/3ds-max/free-trial)
+- After this, go ahead and make sure you have your OpenFlight model files are downloaded and ready to be used.
+- Inside of 3ds Max, to open the model, select “File→Import→Import…”.
+    
+    ![Screenshot 2023-02-03 105935.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_105935.jpg)
+    
+- In the file explorer, select the OpenFlight(.ftl) for converting into .fbx format.               (You can choose to sort by .ftl files to find your file quicker)
+    
+    ![Screenshot 2023-02-03 110342.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_110342.jpg)
+    
+- The last step in converting is exporting, just like before let’s go to “File→Export→Export…” and once in the file explorer make sure to set the type of the file to “AutoDesk (.fbx)”.
+    
+    ![Screenshot 2023-02-03 110943.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_110943.jpg)
+    
+- After hitting save, you will be asked what export settings you would like, the only ones you need to change are: ********Set “Preserve Instances”.********
+    
+    ![Screenshot 2023-02-03 113321.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_113321.jpg)
+    
+
+1. ************************************************************************************************After getting the model into .fbx format, we can upload the file to Sketchfab, an online 3D model showcase website.************************************************************************************************
+- This allows us to use their API in Unity to pull down our 3D model from their website. The API runs scripts onto the model when importing into Unity that rips the textures and materials needed in Unity.
+- First create a Sketchfab account: [https://sketchfab.com/](https://sketchfab.com/)
+- Once we have an account, we can hit the “Upload” button in the upper right of the page, this will bring us to an upload file page.
+    
+    ![Screenshot 2023-02-03 112402.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_112402.jpg)
+    
+    ![Screenshot 2023-02-03 112425.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_112425.jpg)
+    
+- Drag the file we exported from 3ds Max into Sketchfab and click Upload.
+    
+    ![Screenshot 2023-02-03 112549.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_112549.jpg)
+    
+- After hitting upload, let’s select the settings for our model before uploading it. Make sure to set the “Who can see?” to private, as well as set download to “Free” or else we cannot use to API to pull it down.
+    
+    ![Screenshot 2023-02-03 112746.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_112746.jpg)
+    
+- Finally, click publish!
+
+1. **Next, we need to install the tool for pulling the model into Unity, which is down through Sketchbook.**
+- First, we need to get the API for Sketchfab attached to Unity. To do this, you can just go to this [GitHub link](https://github.com/sketchfab/unity-plugin/releases/tag/1.2.2) and install the Unity package.
+    
+    ![Screenshot 2023-02-03 113047.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_113047.jpg)
+    
+- Once downloaded and we double-click the package, it will open the package in Unity and ask about import settings, import all packages:
+    
+    ![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%207.png)
+    
+- Sketchfab should now be installed into this instance of your Unity Editor. At the top of the page, there should now be a Sketchfab dropdown. (If not, reload the editor)
+    
+    ![Screenshot 2023-02-03 114111.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_114111.jpg)
+    
+- Next, click “Browse Sketchfab”, this will open Sketchfab in Unity. ******************************************************************************************You will need to log in with your Sketchfab login.****************************************************************************************** After logging in, you can find you models by using the “search in” dropdown and selecting “my models”.
+    
+    ![Screenshot 2023-02-03 114530.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_114530.jpg)
+    
+- Now you can go ahead and select your model that was uploaded. Let’s download it!
+    
+    ![Screenshot 2023-02-03 114647.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_114647.jpg)
+    
+- After downloading the model, you should see it in your assets.
+    
+    ![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%208.png)
+    
+- If your materials are pink, you will have to make sure the lighting is set correctly on them. In my case, since I was using HDRP for lighting, I had to switch them to HDRP/Lit. To do this, you select all of your materials and in the inspector, change their “Shader” to whichever shader/rendering system you are using.
+    
+    ![Screenshot 2023-02-03 115958.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_115958.jpg)
+    
+
+### Go ahead and drag the new model into the scene you are working in and you should see the original OpenFlight model we took and converted to .fbx!
+
+![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%209.png)
+
 # 📋 documentation for the sim we built
 
 Now that you’re a Unity Expert (🤣), here’s how we built the sim:
@@ -311,11 +390,11 @@ Once the project is open in the Unity Editor, you can go ahead and start the sim
 
 - Navigate to the Scenes folder in your Assets Menu and ***double click*** the scene “Main Menu”.
     
-    ![123.png](/images/SceneSelect.png)
+    ![123.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/123.png)
     
 - After clicking the scene, you will be on the Main Menu screen. Then, ***you must press the play button*** at the top of the editor, to start the sim.
     
-    ![safasfasf.PNG](/images/TitleScreen.PNG.png)
+    ![safasfasf.PNG](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/safasfasf.png)
     
     From the Main Menu, you can choose to start the simulation by hitting the Start button. **(Visit the Settings page first, this is where you will select what you want to control.)**
     
@@ -324,30 +403,40 @@ Once the project is open in the Unity Editor, you can go ahead and start the sim
 
 - Each tab has corresponding button layouts based on your input device.
     
-    ![joystick.PNG](/images/joystick.PNG.png)
+    ![joystick.PNG](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/joystick.png)
     
 
 ### Settings Menu:
 
 - The first time you enter the settings menu, no values will be selected.
     
-    ![setting.PNG](/images/setting.png)
+    ![setting.PNG](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/setting.png)
     
 - On the left side, you can select whether you want to control the C5, the KC135, and/or the Boom Arm. **(If left unselected, they will default to being controlled by AI)**
     
-    ![123123.png](/images/ControlsSelect1.png)
+    ![123123.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/123123.png)
     
 - Once you have selected which planes you’d like to control, you can select the input for whichever input device you are using. **(If left blank, it will default to keyboard)**
     
-    ![12312312123.png](/images/ControlsSelect2.png)
+    ![12312312123.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/12312312123.png)
     
 - You can toggle on and off Volumetric Clouds and/or fog, depending on system requirements. As well as change the time of day with the slider.
     
-    ![safasfas.PNG](/images/ControlsSelect3.PNG.png)
+    ![safasfas.PNG](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/safasfas.png)
     
 - The values will be saved when you exit the settings menu (saved in PlayerPrefs). Upon return, the settings will be taken from PlayerPrefs (A class that stores Player preferences between game sessions) and will reload the settings you have chosen.
 
 ### After selecting your settings, you are ready to start the simulation! Return to the Main Menu and hit Start!
+
+### Ending the Sim:
+
+The sim ends on certain triggers that happen during the simulation:
+
+- At any point, you can hit the **ESC key** to display the “End of Sim screen”.
+- If the nozzle condition is brought to 0%, it will display the “End of Sim screen”.
+- If the two planes reach a certain distance apart, it will display the “End of Sim screen”.
+- Once refueling has been complete, if the C5 is in PlayerMode, the distance of the bounding box is reduced. The C5 must reach a certain position before the sim ends.
+- If the planes and Boom Arm are set to AI controlled, the sim will end after the plane is done refueling, prompting the “End of Sim screen”.
 
 ## 🎛️ Tweaking Values
 
@@ -360,7 +449,7 @@ We built much of the sim to be tweak-able without touching code.
 
 Select “c5” in RealInstance > c5. In the Inspector, the “Plane Movement” Script has many values
 
-![Screen Shot 2023-01-31 at 10.34.30 AM.png](/images/PlaneMovement.png)
+![Screen Shot 2023-01-31 at 10.34.30 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.34.30_AM.png)
 
 Roll Speed: the speed at which the plane rolls
 
@@ -384,7 +473,7 @@ LR Speed: how much the aircraft moves to its left/right when rolling
 
 Select “c5” in RealInstance > c5. In the Inspector, the “RigidBody” Component has settings for mass.
 
-![Screen Shot 2023-01-31 at 10.50.26 AM.png](/images/Rigidbody.png)
+![Screen Shot 2023-01-31 at 10.50.26 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.50.26_AM.png)
 
 ### ✈️ To tweak the KC135:
 
@@ -392,7 +481,7 @@ Select “c5” in RealInstance > c5. In the Inspector, the “RigidBody” Comp
 
 Select “KC135” in RealInstance > KC135. In the Inspector, the “Plane Movement Articulation body” Script has many values
 
-![Screen Shot 2023-01-31 at 10.42.05 AM.png](/images/PlaneMovementAB.png)
+![Screen Shot 2023-01-31 at 10.42.05 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.42.05_AM.png)
 
 Roll Speed: the speed at which the plane rolls
 
@@ -410,7 +499,7 @@ LR Speed: how much the aircraft moves to its left/right when rolling
 
 Select “KC135” in RealInstance > KC135. In the Inspector, the “Articulation Body” Component has settings for mass.
 
-![Screen Shot 2023-01-31 at 10.52.10 AM.png](/images/AB.png)
+![Screen Shot 2023-01-31 at 10.52.10 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.52.10_AM.png)
 
 ### 🦾 To tweak the Boom Arm:
 
@@ -418,7 +507,7 @@ Select “KC135” in RealInstance > KC135. In the Inspector, the “Articulatio
 
 Select “Outer_Boom” in RealInstance > KC135 > Outer_Boom. In the Inspector, the “Boom Arm Movement” Script has many values
 
-![Screen Shot 2023-01-31 at 2.25.03 PM.png](/images/BAM.png)
+![Screen Shot 2023-01-31 at 2.25.03 PM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_2.25.03_PM.png)
 
 Roll Change Speed : how quickly the arm will roll
 
@@ -446,16 +535,15 @@ Fuel Rate : how quickly fuel passes from the KC135 to the C5
 
 Select “Outer_Boom” in RealInstance > KC135 > Outer_Boom. In the Inspector, the “Articulation Body” Component has mass options
 
-![Screen Shot 2023-01-31 at 10.55.54 AM.png](/images/ArmAB.png)
+![Screen Shot 2023-01-31 at 10.55.54 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.55.54_AM.png)
 
 ********************Fuel Hose:********************
 
 Select “Inner_Hose” in RealInstance > KC135 > Outer_Boom > Inner_Hose. In the Inspector, the “Articulation Body” Component has mass options
 
-![Screen Shot 2023-01-31 at 10.58.20 AM.png](/images/HoseAB.png)
+![Screen Shot 2023-01-31 at 10.58.20 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_10.58.20_AM.png)
 
 ## 👷 Architecture
-For questions on simulation Architecture, please refer to our [presentation](https://drive.google.com/file/d/1jbaDxlbrAM4Cz4LUJlsFwuOSOKwQyM-C/view?t=28m31s)
 
 ## 🧠 Neural Network Usage & Further Training
 
@@ -475,7 +563,7 @@ The Model’s inputs are:
 
 - [0-29] 5 [Ray Perception Sensors](https://docs.unity3d.com/Packages/com.unity.ml-agents@1.0/api/Unity.MLAgents.Sensors.RayPerceptionSensorComponent3D.html) that are cast from the nozzle.
     
-    ![Screen Shot 2023-01-30 at 4.33.17 PM.png](/images/RayPerceptionSensors.png)
+    ![Screen Shot 2023-01-30 at 4.33.17 PM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-30_at_4.33.17_PM.png)
     
     - Each Ray Perception Sensor provides 6 inputs, for a total of 30 values.
     - Inputs are:
@@ -488,7 +576,7 @@ The Model’s inputs are:
 - [30] The distance from the nozzle of the boom arm to the C5’s fuel hole (meters) (float)
 - [31, 32] the arm pitch and roll angular differences (degrees) (float)
     
-    ![Screen Shot 2023-01-30 at 4.21.02 PM.png](/images/optimalAngleDiagram.png)
+    ![Screen Shot 2023-01-30 at 4.21.02 PM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-30_at_4.21.02_PM.png)
     
     - Vector 1 (current) from Rotation Point to Nozzle Tip
     - Vector 2 (ideal) from Rotation Point to fuel hole
@@ -634,7 +722,7 @@ To increase training speed, ML-Agents has implemented the ability for Agents to 
 
 Something like this:
 
-![Screen Shot 2023-01-31 at 9.50.45 AM.png](/images/MultiInstances.png)
+![Screen Shot 2023-01-31 at 9.50.45 AM.png](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screen_Shot_2023-01-31_at_9.50.45_AM.png)
 
 For best results, we found that **16 instances** in a square formation (4x4) works best. Each instance is separated by 200 meters on the x or z axis, and has the Sketchfab models for the C5, KC135, and Boom Arm disabled to save rendering memory.
 
