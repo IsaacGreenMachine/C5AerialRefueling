@@ -364,7 +364,7 @@ Getting OpenFlight models working in Unity is slightly tricky. At them moment, U
 
 ### Go ahead and drag the new model into the scene you are working in and you should see the original OpenFlight model we took and converted to .fbx!
 
-![Untitled](/images/Screenshot 2023-02-03 122938.jpg)
+![Untitled](/images/Screenshot2023-02-03122938.jpg)
 
 
 # 📋 documentation for the sim we built
