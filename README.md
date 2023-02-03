@@ -30,7 +30,6 @@
             </ul>
          </ul>
       </li>
-      <li><a href="#usage">Usage</a></li>
       <li><a href="#contact">Contact</a></li>
    </ol>
 </details>
@@ -531,6 +530,7 @@ Select “Inner_Hose” in RealInstance > KC135 > Outer_Boom > Inner_Hose. In th
 ## 👷 Architecture
 For questions on simulation Architecture, please refer to our [presentation](https://drive.google.com/file/d/1jbaDxlbrAM4Cz4LUJlsFwuOSOKwQyM-C/view?t=28m31s)
 
+<a id="Neural-Network-Usage-&-Further-Training"></a>
 ## 🧠 Neural Network Usage & Further Training
 
 The Neural Network file is a [.onnx (Open Neural Network Exchange)](https://onnx.ai). 
