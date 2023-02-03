@@ -289,6 +289,84 @@ A GameObject’s scale will affect all its children. It is best practice to crea
 
 [mesh colliders](https://docs.unity3d.com/Manual/class-MeshCollider.html) are a very tempting way to handle collisions. They don’t work most of the time, though. They are worth a try, and worth a try again with the “convex” option enabled, but it is best to use box / capsule / sphere colliders when possible.
 
+## Importing OpenFlight models into Unity
+
+Getting OpenFlight models working in Unity is slightly tricky. At them moment, Unity only allows .fbx or .obj files, which are NOT OpenFlight models. Let’s talk about the steps that were taken to achieve this.
+
+1. **We need to convert the OpenFlight into .fbx format.**
+- The best way to do this is to use **3ds Max** from AutoDesk. You can install it from this link: [https://www.autodesk.com/products/3ds-max/free-trial](https://www.autodesk.com/products/3ds-max/free-trial)
+- After this, go ahead and make sure you have your OpenFlight model files are downloaded and ready to be used.
+- Inside of 3ds Max, to open the model, select “File→Import→Import…”.
+    
+    ![Screenshot 2023-02-03 105935.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_105935.jpg)
+    
+- In the file explorer, select the OpenFlight(.ftl) for converting into .fbx format.               (You can choose to sort by .ftl files to find your file quicker)
+    
+    ![Screenshot 2023-02-03 110342.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_110342.jpg)
+    
+- The last step in converting is exporting, just like before let’s go to “File→Export→Export…” and once in the file explorer make sure to set the type of the file to “AutoDesk (.fbx)”.
+    
+    ![Screenshot 2023-02-03 110943.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_110943.jpg)
+    
+- After hitting save, you will be asked what export settings you would like, the only ones you need to change are: ********Set “Preserve Instances”.********
+    
+    ![Screenshot 2023-02-03 113321.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_113321.jpg)
+    
+
+1. ************************************************************************************************After getting the model into .fbx format, we can upload the file to Sketchfab, an online 3D model showcase website.************************************************************************************************
+- This allows us to use their API in Unity to pull down our 3D model from their website. The API runs scripts onto the model when importing into Unity that rips the textures and materials needed in Unity.
+- First create a Sketchfab account: [https://sketchfab.com/](https://sketchfab.com/)
+- Once we have an account, we can hit the “Upload” button in the upper right of the page, this will bring us to an upload file page.
+    
+    ![Screenshot 2023-02-03 112402.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_112402.jpg)
+    
+    ![Screenshot 2023-02-03 112425.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_112425.jpg)
+    
+- Drag the file we exported from 3ds Max into Sketchfab and click Upload.
+    
+    ![Screenshot 2023-02-03 112549.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_112549.jpg)
+    
+- After hitting upload, let’s select the settings for our model before uploading it. Make sure to set the “Who can see?” to private, as well as set download to “Free” or else we cannot use to API to pull it down.
+    
+    ![Screenshot 2023-02-03 112746.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_112746.jpg)
+    
+- Finally, click publish!
+
+1. **Next, we need to install the tool for pulling the model into Unity, which is down through Sketchbook.**
+- First, we need to get the API for Sketchfab attached to Unity. To do this, you can just go to this [GitHub link](https://github.com/sketchfab/unity-plugin/releases/tag/1.2.2) and install the Unity package.
+    
+    ![Screenshot 2023-02-03 113047.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_113047.jpg)
+    
+- Once downloaded and we double-click the package, it will open the package in Unity and ask about import settings, import all packages:
+    
+    ![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%207.png)
+    
+- Sketchfab should now be installed into this instance of your Unity Editor. At the top of the page, there should now be a Sketchfab dropdown. (If not, reload the editor)
+    
+    ![Screenshot 2023-02-03 114111.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_114111.jpg)
+    
+- Next, click “Browse Sketchfab”, this will open Sketchfab in Unity. ******************************************************************************************You will need to log in with your Sketchfab login.****************************************************************************************** After logging in, you can find you models by using the “search in” dropdown and selecting “my models”.
+    
+    ![Screenshot 2023-02-03 114530.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_114530.jpg)
+    
+- Now you can go ahead and select your model that was uploaded. Let’s download it!
+    
+    ![Screenshot 2023-02-03 114647.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_114647.jpg)
+    
+- After downloading the model, you should see it in your assets.
+    
+    ![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%208.png)
+    
+- If your materials are pink, you will have to make sure the lighting is set correctly on them. In my case, since I was using HDRP for lighting, I had to switch them to HDRP/Lit. To do this, you select all of your materials and in the inspector, change their “Shader” to whichever shader/rendering system you are using.
+    
+    ![Screenshot 2023-02-03 115958.jpg](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Screenshot_2023-02-03_115958.jpg)
+    
+
+### Go ahead and drag the new model into the scene you are working in and you should see the original OpenFlight model we took and converted to .fbx!
+
+![Untitled](CymStar%20Unity%20R&D%20Writeup%208a8cdf24d9aa4a8692890780e1da64a8/Untitled%209.png)
+
+
 # 📋 documentation for the sim we built
 
 Now that you’re a Unity Expert (🤣), here’s how we built the sim:
