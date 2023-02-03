@@ -97,7 +97,7 @@ This allows you to create and manage Unity projects and versions with a visual i
 
 ## the editor
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1eebb0d5-33a5-42b9-b24f-889d2b6e8034/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031312Z&X-Amz-Expires=86400&X-Amz-Signature=65c59017536ecde10c41606eb532ef354e9763d06993190cadc9236e341048f0&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](/images/editor.jpg)
 
 You’ll spend a lot of time looking at this screen: it’s the editor.
 
@@ -128,7 +128,7 @@ When GameObjects are created, they come with a “transform” Component. This i
 
 GameObjects can be nested, which helps group them together. It also locks their positions together (if a parent moves 10 units on the x axis, so will all its children)
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a40e26fc-e96f-45ac-94b4-3da6bb730713/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230202%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230202T031432Z&X-Amz-Expires=86400&X-Amz-Signature=4587188cf51b53f62643bf3b6b8a5b93947aebc741b2bc6fdec857689ce343df&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](/images/nestGO.jpg)
 
 ## accessing stuff using scripts
 
