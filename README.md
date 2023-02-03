@@ -22,6 +22,14 @@
          <ul>
             <li><a href="#💬-useful-stuff-for-building-physics-sims-in-Unity">useful stuff for building physics sims in Unity</a></li>
             <ul>
+               <li><a href="#setup">Setup in Unity</a></li>
+               <li><a href="#editor">The Editor</a></li>
+               <li><a href="#thinkingInUnity">Thinking Like Unity</a></li>
+               <li><a href="#scripts">Scripts in Unity</a></li>
+               <li><a href="#engine">The Unity Engine</a></li>
+               <li><a href="#position">Position-based Movement in Unity</a></li>
+               <li><a href="#physics">Physics-based Movement in Unity</a></li>
+               <li><a href="#gotchas">Unity Gotchas</a></li>
                <li><a href="#OpenFlight">OpenFlight Models in Unity</a></li>
             </ul>
             <li><a href="#documentation-for-the-sim-we-built">documentation for the sim we built</a></li>
@@ -87,13 +95,13 @@ In this section, I’ll share some of the biggest issues we ran into and how we 
 I’ll cover the basics, but a good way to get up and going in Unity is to check out the [**Unity Learn Suite**](https://learn.unity.com), where there are tutorials for **********************everything.********************** Including [**ML-Agents**](https://learn.unity.com/course/ml-agents-hummingbirds)!
 
 ## unity basics
-
+<a id="setup"></a>
 ## setup
 
 to get unity running on your machine, you’ll likely use the [Unity Hub](https://unity.com/download). ![Untitled](https://docs.unity3d.com/2019.1/Documentation/uploads/Main/gs_hub_installs_screen2.png).
 
 This allows you to create and manage Unity projects and versions with a visual interface. If you have our project downloaded on your machine, you should be able to open in with this tool.
-
+<a id="editor"></a>
 ## the editor
 
 ![Untitled](/images/editor.jpg)
@@ -109,7 +117,7 @@ B: the “Hierarchy”. a list of everything that currently exists in the runnin
 E : the “Inspector”. This is where all the information about an object goes: Scripts, properties, textures, etc.
 
 F: this is where you can see all the files for the project
-
+<a id="thinkingInUnity"></a>
 ## thinking like unity
 
 Everything in Unity is either an Asset or a Component.
@@ -128,7 +136,7 @@ When GameObjects are created, they come with a “transform” Component. This i
 GameObjects can be nested, which helps group them together. It also locks their positions together (if a parent moves 10 units on the x axis, so will all its children)
 
 ![Untitled](/images/nestGO.jpg)
-
+<a id="scripts"></a>
 ## accessing stuff using scripts
 
 say you want to change a property on a GameObject that the current script isn’t attached to
@@ -157,7 +165,7 @@ GameObject g = GameObject.Find("name");
 	// accessing the variable 'myvariablename' from the script
 	s.myvariablename += 1;	
 ```
-
+<a id="engine"></a>
 ## moving stuff in the engine
 
 Unity tracks its movements using [Quaternions](https://en.wikipedia.org/wiki/Quaternion), but luckily for us, we can view its movements in 3 Dimensional vectors, of type “[Vector3](https://docs.unity3d.com/ScriptReference/Vector3.html)”
@@ -194,7 +202,7 @@ and world to local
 [Transform.InverseTransformPoint](https://docs.unity3d.com/ScriptReference/Transform.InverseTransformPoint.html)
 
 There are 2 main schools of thought when it comes to movement in unity:
-
+<a id="position"></a>
 ### position-based movement
 
 we started here. 
@@ -218,7 +226,7 @@ There’s a pretty big caveat about positional-based movement: collisions.
 Position-based movement forces an objects position to change, which is really bad for detecting when objects have collided with each other.
 
 You *could* code your own physics and collisions system using positional-based movement, but if you need object collisions, it’s much better to use Unity’s physics-based movement.
-
+<a id="physics"></a>
 ### physics-based movement
 
 Physics-based movement implements Unity’s built-in physics system. You will need two components for this type of movement:
@@ -270,7 +278,7 @@ Here’s a great demo using Articulated Bodies:
 [https://github.com/Unity-Technologies/articulations-robot-demo](https://github.com/Unity-Technologies/articulations-robot-demo)
 
  
-
+<a id="gotchas"></a>
 ## Unity “gotchas”
 
 ### Nesting Rigidbodies
