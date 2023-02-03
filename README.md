@@ -762,22 +762,17 @@ and ways to improve its performance:
 <!-- CONTACT -->
 ## Contact
 ### Isaac Green 
-- isaac.green@holbertonstudets.com\
+- isaac.green@holbertonstudents.com\
 [![LinkedIn][linkedin-shield]][isaac-linkedin-url]
 
 ### Lyndon Pettersson
-- 3266@holbertonstudets.com\
+- lyndonpett98@gmail.com\
 [![LinkedIn][linkedin-shield]][lyndon-linkedin-url]
 
 
 Project Link: [https://github.com/IsaacGreenMachine/C5AerialRefueling](https://github.com/IsaacGreenMachine/C5AerialRefueling)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
