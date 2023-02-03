@@ -21,6 +21,9 @@
          <a href="#CymStar-Unity-RnD-Writeup">CymStar Unity R&D Writeup</a>
          <ul>
             <li><a href="#💬-useful-stuff-for-building-physics-sims-in-Unity">useful stuff for building physics sims in Unity</a></li>
+            <ul>
+               <li><a href="#OpenFlight">OpenFlight Models in Unity</a></li>
+            </ul>
             <li><a href="#documentation-for-the-sim-we-built">documentation for the sim we built</a></li>
             <ul>
                <li><a href="#Play-Guide">Play Guide</a></li>
@@ -36,7 +39,7 @@
 
 [Important Links](https://linktr.ee/c5aerialrefueling)
 
-
+<a id="about-the-project"></a>
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 This project simulates [aerial refueling][refuel-video] between C5 and KC-135 aircrafts.
@@ -46,7 +49,7 @@ This project simulates [aerial refueling][refuel-video] between C5 and KC-135 ai
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
+<a id="built-with"></a>
 ### Built With
 * [![Python][Python]][python-url]
 
@@ -59,7 +62,7 @@ This project simulates [aerial refueling][refuel-video] between C5 and KC-135 ai
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
+<a id="Running-the-Demo"></a>
 ## Running the Demo
 Run the [Build.rar](https://github.com/IsaacGreenMachine/C5AerialRefueling/blob/main/Build.rar) file on your machine or open the [Aerial Refueling Test](https://github.com/IsaacGreenMachine/C5AerialRefueling/tree/main/Aerial%20Refueling%20Test) Folder in [Unity Hub](https://unity.com/download).
 
@@ -68,6 +71,7 @@ Run the [Build.rar](https://github.com/IsaacGreenMachine/C5AerialRefueling/blob/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<a id="CymStar-Unity-RnD-Writeup"></a>
 # CymStar Unity RnD Writeup
 
 Hello, CymStar! 
@@ -75,7 +79,7 @@ Hello, CymStar!
 Here is a document containing all of the information you’ll need regarding the **********************************************************C5 Aerial Refueling Boom Arm********************************************************** project as well as some useful information we learned about Unity that may help in your future ventures with the engine.
 
 The document can be broken down into two sections:
-
+<a id="💬-useful-stuff-for-building-physics-sims-in-Unity"></a>
 # 💬 useful stuff for building physics sims in Unity
 
 In this section, I’ll share some of the biggest issues we ran into and how we solved them. Hopefully, it will provide insights, save you time, and help you learn from our mistakes.
@@ -284,6 +288,7 @@ A GameObject’s scale will affect all its children. It is best practice to crea
 
 [mesh colliders](https://docs.unity3d.com/Manual/class-MeshCollider.html) are a very tempting way to handle collisions. They don’t work most of the time, though. They are worth a try, and worth a try again with the “convex” option enabled, but it is best to use box / capsule / sphere colliders when possible.
 
+<a id="OpenFlight"></a>
 ## Importing OpenFlight models into Unity
 
 Getting OpenFlight models working in Unity is slightly tricky. At them moment, Unity only allows .fbx or .obj files, which are NOT OpenFlight models. Let’s talk about the steps that were taken to achieve this.
@@ -361,7 +366,7 @@ Getting OpenFlight models working in Unity is slightly tricky. At them moment, U
 
 ![Untitled](/images/Screenshot122938.jpg)
 
-
+<a id="documentation-for-the-sim-we-built"></a>
 # 📋 documentation for the sim we built
 
 Now that you’re a Unity Expert (🤣), here’s how we built the sim:
@@ -376,6 +381,7 @@ If you haven’t seen our presentation, we did an overview.
 
 [Final Presentation](https://docs.google.com/presentation/d/1Nvw4DBlbsszmDLo6KLTgtykaMlqNhEDkEGH8OXYLzFA/edit?usp=sharing)
 
+<a id="Play-Guide"></a>
 ## 🎮 Play Guide
 
 Once the project is open in the Unity Editor, you can go ahead and start the sim!
@@ -422,6 +428,7 @@ Once the project is open in the Unity Editor, you can go ahead and start the sim
 
 ### After selecting your settings, you are ready to start the simulation! Return to the Main Menu and hit Start!
 
+<a id="Tweaking-Values"></a>
 ## 🎛️ Tweaking Values
 
 Want to change how the sim handles, but don’t want to mess with the code?
@@ -526,7 +533,7 @@ Select “Outer_Boom” in RealInstance > KC135 > Outer_Boom. In the Inspector, 
 Select “Inner_Hose” in RealInstance > KC135 > Outer_Boom > Inner_Hose. In the Inspector, the “Articulation Body” Component has mass options
 
 ![Screen Shot 2023-01-31 at 10.58.20 AM.png](/images/HoseAB.png)
-
+<a id="Architecture"></a>
 ## 👷 Architecture
 For questions on simulation Architecture, please refer to our [presentation](https://drive.google.com/file/d/1jbaDxlbrAM4Cz4LUJlsFwuOSOKwQyM-C/view?t=28m31s)
 
